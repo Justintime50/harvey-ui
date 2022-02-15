@@ -1,5 +1,5 @@
 services:
-  app:
+  harvey-ui:
     deploy:
       replicas: 2
     healthcheck:
@@ -9,8 +9,8 @@ services:
       retries: 3
       start_period: 30s
     labels:
-      - traefik.frontend.rule=Host:app.com,www.app.com
+      - traefik.frontend.rule=Host:harvey.justinpaulhammond.com,www.harvey.justinpaulhammond.com
     # TODO: Do we use a named volume here or backup this folder somewhere?
     volumes:
       - ./src/storage:/var/www/html/storage
-  # The `app-db` and `app-db-replica` containers will automatically restart on a failure, no custom healthcheck needed
+  # The `harvey-ui-db` and `harvey-ui-db-replica` containers will automatically restart on a failure, no custom healthcheck needed

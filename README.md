@@ -1,38 +1,15 @@
 <div align="center">
 
-# Laravel Template
+# Harvey UI
 
-A Laravel project template to save you time and energy.
+The frontend UI for the Harvey Docker compose deployment system.
 
-[![Build](https://github.com/Justintime50/laravel-template/workflows/build/badge.svg)](https://github.com/Justintime50/laravel-template/actions)
-[![Licence](https://img.shields.io/github/license/justintime50/laravel-template)](LICENSE)
+[![Build](https://github.com/Justintime50/harvey-ui/workflows/build/badge.svg)](https://github.com/Justintime50/harvey-ui/actions)
+[![Licence](https://img.shields.io/github/license/justintime50/harvey-ui)](LICENSE)
 
-<img src="https://raw.githubusercontent.com/justintime50/assets/main/src/laravel-template/showcase.png" alt="Showcase">
+<img src="https://raw.githubusercontent.com/justintime50/assets/main/src/harvey-ui/showcase.png" alt="Showcase">
 
 </div>
-
-## Setup Template
-
-Click the `Use this template` button at the top of this project's GitHub page, it looks like this:
-
-<img src="https://raw.githubusercontent.com/justintime50/assets/main/src/templates/use_template_button.png" alt="Showcase">
-
-2. After using the template, clone the repo
-3. Laravel Template assumes you have `composer` installed globally:
-
-```bash
-# Install Laravel into a `src` directory
-composer create-project laravel/laravel src
-```
-
-Once Laravel is installed, replace text as needed throughout the project:
-
-1. Replace all instances of `app` with the name of your project (found in docker-compose files)
-1. Replace all values in `src/.env` and `database.env` to reflect the values you need
-1. Update name in `LICENSE`
-1. Configure the `.github/workflows/build.yml` file
-1. Update the `CHANGELOG`
-1. Delete this `README` and create a new one for your project
 
 ## Install
 
@@ -46,8 +23,7 @@ cp src/.env-example src/.env && cp database.env-example database.env
 
 ## Usage
 
-1. Setup [Traefik](https://github.com/Justintime50/multisite-docker-server) to manage routing and load balancing
-1. Setup [DNSMasq](https://gist.github.com/Justintime50/882403451e3231a6c088743e0e66acb5) so you don't have to manage your `/etc/hosts` file while using Traefik for local development
+Visit `harvey-ui.localhost` in a browser to get started.
 
 ## Deploy
 
@@ -60,8 +36,6 @@ docker compose -f docker-compose.yml -f docker-compose-prod.yml up -d
 ```
 
 ## Development
-
-The following commands may need to be manually added before they're ready to use.
 
 ```bash
 # Install dependencies

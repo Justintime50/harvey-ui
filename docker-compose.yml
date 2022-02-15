@@ -1,10 +1,10 @@
 services:
-  app:
+  harvey-ui:
     build: .
     restart: always
     networks:
       - traefik
-      - app
+      - harvey-ui
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik
@@ -12,9 +12,9 @@ services:
     env_file:
       - src/.env
     depends_on:
-      - app-db
-      - app-db-replica
-  app-db:
+      - harvey-ui-db
+      - harvey-ui-db-replica
+  harvey-ui-db:
     image: 'bitnami/mariadb:10.6.7'
     restart: always
     volumes:
@@ -25,21 +25,21 @@ services:
     env_file:
       - database.env
     networks:
-      - app
+      - harvey-ui
     labels:
       - traefik.enable=false
-  app-db-replica:
+  harvey-ui-db-replica:
     image: 'bitnami/mariadb:10.6.7'
     restart: always
     depends_on:
-      - app-db
+      - harvey-ui-db
     environment:
       - MARIADB_REPLICATION_MODE=slave
-      - MARIADB_MASTER_HOST=app-db
+      - MARIADB_MASTER_HOST=harvey-ui-db
     env_file:
       - database.env
     networks:
-      - app
+      - harvey-ui
     labels:
       - traefik.enable=false
 
@@ -50,5 +50,5 @@ volumes:
 networks:
   traefik:
     name: traefik
-  app:
-    name: app
+  harvey-ui:
+    name: harvey-ui

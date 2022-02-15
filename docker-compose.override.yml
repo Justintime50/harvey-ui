@@ -1,6 +1,6 @@
 services:
-  app:
+  harvey-ui:
     labels:
-      - traefik.frontend.rule=Host:app.localhost
+      - traefik.frontend.rule=Host:harvey-ui.localhost
     volumes:
       - ./src:/var/www/html
