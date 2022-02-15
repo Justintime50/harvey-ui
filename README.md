@@ -21,6 +21,8 @@ cp src/.env-example src/.env && cp database.env-example database.env
 ./setup.sh
 ```
 
+Set the `HARVEY_DOMAIN` and `HARVEY_SECRET` env variables prior to deploying the site.
+
 ## Usage
 
 Visit `harvey-ui.localhost` in a browser to get started.
