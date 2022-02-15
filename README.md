@@ -11,6 +11,8 @@ The frontend UI for the Harvey Docker compose deployment system.
 
 </div>
 
+Harvey is the lightweight Docker Compose deployment platform. The API and backend can be found here: https://github.com/Justintime50/harvey.
+
 ## Install
 
 ```bash
