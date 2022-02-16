@@ -23,4 +23,4 @@ jobs:
           webhook_type: "json-extended"
           webhook_url: ${{ secrets.WEBHOOK_URL }}
           webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
-          data: '{ "pipeline": "deploy", "prod_compose": true, "healthcheck": ["harvey-ui-1", "harvey-ui-2"] }'
+          data: '{ "pipeline": "deploy", "prod_compose": true, "healthcheck": ["harvey-ui-harvey-ui-1", "harvey-ui-harvey-ui-2"] }'
