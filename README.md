@@ -2,12 +2,12 @@
 
 # Harvey UI
 
-The frontend UI for the Harvey Docker compose deployment system.
+The UI for the the lightweight Docker Compose deployment platform - Harvey.
 
 [![Build](https://github.com/Justintime50/harvey-ui/workflows/build/badge.svg)](https://github.com/Justintime50/harvey-ui/actions)
 [![Licence](https://img.shields.io/github/license/justintime50/harvey-ui)](LICENSE)
 
-<img src="https://raw.githubusercontent.com/justintime50/assets/main/src/harvey-ui/showcase.png" alt="Showcase">
+<img src="https://raw.githubusercontent.com/justintime50/assets/main/src/harvey/showcase.png" alt="Showcase">
 
 </div>
 
