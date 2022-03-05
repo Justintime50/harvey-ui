@@ -20,10 +20,24 @@
             </thead>
             <tbody>
                 @foreach ($projects as $project)
+                @php $lock_exists = false; @endphp
                 <tr>
                     <td><a href="harvey-project?project={{ $project }}">{{ $project }}</a></td>
                     <td>Unknown</td>
-                    <td>See Project</td>
+                    {{-- TODO: Fix the response of locks so it has the project name as the key so we don't need to
+                    iterate like this --}}
+                    @foreach ($locks as $lock)
+                    @if ($lock['project'] == $project)
+                    @php
+                    $lock_color = ( $lock['locked'] == false ? 'text-success' : 'text-danger');
+                    $lock_exists = true;
+                    @endphp
+                    <td class="{{ $lock_color }}">{{ var_export($lock['locked']) }}</td>
+                    @endif
+                    @endforeach
+                    @if ($lock_exists !== true)
+                    <td>Unknown</td>
+                    @endif
                 </tr>
                 @endforeach
             </tbody>

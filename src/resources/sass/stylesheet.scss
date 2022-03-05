@@ -1,29 +1,42 @@
 body {
-  background-color: #212529
+    background-color: #212529;
 }
 
-h1, h2, h3, h4, h5, h6, p {
-  color: #fff;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    color: #fff;
 }
 
 h1 {
-  font-size: 7vmin;
+    font-size: 7vmin;
 }
 
 h4 {
-  line-height: 1.375em;
-  font-weight: 400;
-  margin-bottom: 30px;
+    line-height: 1.375em;
+    font-weight: 400;
+    margin-bottom: 30px;
 }
 
 button {
-  margin: 20px 0px;
+    margin: 20px 0px;
 }
 
 .container {
-  padding: 40px 20px;
+    padding: 40px 20px;
 }
 
 a {
-  text-decoration: none;
+    text-decoration: none;
+}
+
+.project-buttons {
+    display: flex;
+    button {
+        margin: 5px;
+    }
 }

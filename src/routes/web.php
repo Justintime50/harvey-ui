@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'DashboardController@dashboard')->name('harvey');
 Route::get('/harvey-pipeline', 'DashboardController@readPipeline')->name('harvey-pipeline');
 Route::get('/harvey-project', 'DashboardController@readProject')->name('harvey-project');
+
+Route::post('/unlock-project', 'DashboardController@unlockProject');
+Route::post('/lock-project', 'DashboardController@lockProject');

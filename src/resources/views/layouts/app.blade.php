@@ -11,6 +11,8 @@
 </head>
 
 <body>
+    @include('partials.flash-messages')
+
     @yield('content')
 
     <script src="{{ asset('js/app.js') }}"></script>

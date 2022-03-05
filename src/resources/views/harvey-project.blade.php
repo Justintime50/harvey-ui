@@ -4,12 +4,23 @@
 
 <div class="container">
     <h1>{{ $project }}</h1>
-    <p><b>Locked:</b> {{ !empty($locked) ? var_export($locked) : 'false' }}</p>
-    <a href="/"><button class="btn btn-primary">Back to Dashboard</button></a>
+    @php
+    $locked_status = !empty($locked) ? 'true' : 'false';
+    $lock_button_endpoint = $locked_status == 'true' ? '/unlock-project' : '/lock-project';
+    @endphp
 
-    <button class="btn btn-warning" disabled>Redeploy</button>
-    <button class="btn btn-secondary" disabled>{{ $locked == false ? 'Lock' : 'Unlock' }} Deployments</button>
-    <button class="btn btn-danger" disabled>Shutdown</button>
+    <p><b>Locked:</b> {{ $locked_status }}</p>
+
+    <div class="project-buttons">
+        <a href="/"><button class="btn btn-primary">Back to Dashboard</button></a>
+        <button class="btn btn-warning" disabled>Redeploy</button>
+        <form action="{{ $lock_button_endpoint }}" method="post">
+            @csrf
+            <input name="project" value="{{ $project }}" hidden>
+            <button class="btn btn-secondary">{{ $locked == false ? 'Lock' : 'Unlock' }} Deployments</button>
+        </form>
+        <button class="btn btn-danger" disabled>Shutdown</button>
+    </div>
 
     <h2 class="text-left">Deployments</h2>
     @if($pipelines != [])
