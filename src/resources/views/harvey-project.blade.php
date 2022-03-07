@@ -5,11 +5,12 @@
 <div class="container">
     <h1>{{ $project }}</h1>
     @php
-    $locked_status = !empty($locked) ? 'true' : 'false';
+    $locked_status = !empty($locked) ? 'true' : 'false'; // TODO: This doesn't account for null or no lock present
+    $lock_color = ( $locked_status == 'false' ? 'text-success' : 'text-danger');
     $lock_button_endpoint = $locked_status == 'true' ? '/unlock-project' : '/lock-project';
     @endphp
 
-    <p><b>Locked:</b> {{ $locked_status }}</p>
+    <p><b>Locked:</b> <span class="{{ $lock_color }}">{{ $locked_status }}</span></p>
 
     <div class="project-buttons">
         <a href="/"><button class="btn btn-primary">Back to Dashboard</button></a>
@@ -46,7 +47,7 @@
         </table>
     </div>
     @else
-    <p>There are no pipelines for this project.</p>
+    <p>There are no project pipelines at this time.</p>
     @endif
 </div>
 

@@ -23,7 +23,18 @@ cp src/.env-example src/.env && cp database.env-example database.env
 ./setup.sh
 ```
 
-Set the `HARVEY_DOMAIN` and `HARVEY_SECRET` env variables prior to deploying the site.
+### Environment Variables
+
+**Required**
+
+- `HARVEY_DOMAIN_PROTOCOL`
+- `HARVEY_DOMAIN`
+- `HARVEY_SECRET`
+
+**Optional**
+
+- `HARVEY_TIMEOUT`
+- `HARVEY_PAGE_SIZE`
 
 ## Usage
 
