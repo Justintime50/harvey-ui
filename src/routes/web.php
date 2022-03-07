@@ -19,3 +19,7 @@ Route::get('/harvey-project', 'DashboardController@readProject')->name('harvey-p
 
 Route::post('/unlock-project', 'DashboardController@unlockProject');
 Route::post('/lock-project', 'DashboardController@lockProject');
+
+Route::get('/boom', function () {
+    throw new Exception('Trigger a sentry error!');
+});

@@ -6,6 +6,7 @@
 - Adds `lock` and `unlock` functionality for projects
 - Wraps all HTTP requests in try/catch blocks to gracefully handle exceptions
 - Adds reusable flash messaging
+- Adds `sentry` integration
 - Bumps default timeout from 5 to 10 seconds
 
 ## v0.1.0 (2022-02-24)
