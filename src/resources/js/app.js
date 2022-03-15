@@ -1,6 +1,7 @@
 try {
     // The Bootstrap Javascript library
     require("bootstrap");
+    require("@popperjs/core");
 } catch (e) {}
 
 /**
