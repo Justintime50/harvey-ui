@@ -8,45 +8,19 @@ services:
       - harvey-ui
     labels:
       - traefik.enable=true
-      - traefik.docker.network=traefik
-      - traefik.port=80
     env_file:
       - src/.env
     # depends_on:
     #   - harvey-ui-db
-    #   - harvey-ui-db-replica
     # harvey-ui-db:
-    #   image: 'bitnami/mariadb:10.6.7'
+    #   image: 'mariadb:10.8.2'
     #   restart: always
     #   volumes:
-    #     - database-data:/bitnami/mariadb
-    #   environment:
-    #     - MARIADB_REPLICATION_MODE=master
-    #     - MARIADB_SKIP_TEST_DB=yes
+    #     - database-data:/var/lib/mysql
     #   env_file:
     #     - database.env
     #   networks:
     #     - harvey-ui
-    #   labels:
-    #     - traefik.enable=false
-    # harvey-ui-db-replica:
-    #   image: 'bitnami/mariadb:10.6.7'
-    #   restart: always
-    #   depends_on:
-    #     - harvey-ui-db
-    #   environment:
-    #     - MARIADB_REPLICATION_MODE=slave
-    #     - MARIADB_MASTER_HOST=harvey-ui-db
-    #   env_file:
-    #     - database.env
-    #   networks:
-    #     - harvey-ui
-    #   labels:
-    #     - traefik.enable=false
-
-    # volumes:
-    #   database-data:
-    #     driver: local
 
 networks:
   traefik:

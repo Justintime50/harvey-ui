@@ -2,6 +2,6 @@ version: "3.8"
 services:
   harvey-ui:
     labels:
-      - traefik.frontend.rule=Host:harvey.localhost
+      - "traefik.http.routers.harvey.rule=Host(`harvey.localhost`)"
     volumes:
       - ./src:/var/www/html

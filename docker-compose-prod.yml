@@ -9,8 +9,14 @@ services:
       timeout: 10s
       retries: 3
     labels:
-      - traefik.frontend.rule=Host:harvey.justinpaulhammond.com,www.harvey.justinpaulhammond.com
-    # TODO: Do we use a named volume here or backup this folder somewhere?
+      - "traefik.http.routers.harvey.rule=Host(`harey.justinpaulhammond.com`) || Host(`www.harey.justinpaulhammond.com`)"
+      - "traefik.http.routers.harvey.tls=true"
+      - "traefik.http.routers.harvey.tls.certresolver=letsencrypt"
     volumes:
       - ./src/storage:/var/www/html/storage
-  # The `harvey-ui-db` and `harvey-ui-db-replica` containers will automatically restart on a failure, no custom healthcheck needed
+  # harvey-db:
+  #   healthcheck:
+  #     test: ["CMD", "mysql", "-u${MARIADB_USER}", "-p${MARIADB_PASSWORD}", "-e", "show databases;"]
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 3
