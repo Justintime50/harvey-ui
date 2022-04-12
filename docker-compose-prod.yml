@@ -9,9 +9,9 @@ services:
       timeout: 10s
       retries: 3
     labels:
-      - "traefik.http.routers.harvey.rule=Host(`harvey.justinpaulhammond.com`) || Host(`www.harvey.justinpaulhammond.com`)"
-      - "traefik.http.routers.harvey.tls=true"
-      - "traefik.http.routers.harvey.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.harvey-ui.rule=Host(`harvey.justinpaulhammond.com`) || Host(`www.harvey.justinpaulhammond.com`)"
+      - "traefik.http.routers.harvey-ui.tls=true"
+      - "traefik.http.routers.harvey-ui.tls.certresolver=letsencrypt"
     volumes:
       - ./src/storage:/var/www/html/storage
   # harvey-db:
