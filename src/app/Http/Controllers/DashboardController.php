@@ -15,11 +15,11 @@ class DashboardController extends Controller
 
     public function __construct()
     {
-        $this->harvey_domain_protocol = getenv('HARVEY_DOMAIN_PROTOCOL') ?? 'http';
+        $this->harvey_domain_protocol = getenv('HARVEY_DOMAIN_PROTOCOL') !== false ? getenv('HARVEY_DOMAIN_PROTOCOL') : 'http';
         $this->harvey_domain = getenv('HARVEY_DOMAIN');
-        $this->harvey_secret = getenv('HARVEY_SECRET');
-        $this->timeout = getenv('HARVEY_TIMEOUT') ?? 10;
-        $this->harvey_page_size = getenv('HARVEY_PAGE_SIZE') ?? '20';
+        $this->harvey_secret = getenv('HARVEY_SECRET') !== false ? getenv('HARVEY_SECRET') : '';
+        $this->timeout = getenv('HARVEY_TIMEOUT') !== false ? getenv('HARVEY_TIMEOUT') : 10;
+        $this->harvey_page_size = getenv('HARVEY_PAGE_SIZE') !== false ? getenv('HARVEY_PAGE_SIZE') : '20';
     }
 
     /**
