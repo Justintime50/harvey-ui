@@ -24,7 +24,7 @@
     </div>
 
     <h2 class="text-left">Deployments</h2>
-    @if($pipelines != [])
+    @if($deployments != [])
     <div class="table-responsive">
         <table class="table table-dark table-striped">
             <thead>
@@ -33,21 +33,21 @@
                 <th>Status</th>
             </thead>
             <tbody>
-                @foreach ($pipelines as $pipeline)
-                @php $status_color = ( $pipeline['status'] == 'Success' ) ? 'text-success' : (( $pipeline['status']
+                @foreach ($deployments as $deployment)
+                @php $status_color = ( $deployment['status'] == 'Success' ) ? 'text-success' : (( $deployment['status']
                 == 'In-Progress' ) ? 'text-info' : 'text-danger'); @endphp
                 <tr>
-                    <td><a href="harvey-pipeline?pipeline={{ $pipeline['project'] }}-{{ $pipeline['commit'] }}">{{
-                            $pipeline['commit'] }}</a></td>
-                    <td>{{ $pipeline['timestamp'] }}</td>
-                    <td class="{{ $status_color }}">{{ $pipeline['status'] }}</td>
+                    <td><a href="harvey-deployment?deployment={{ $deployment['project'] }}-{{ $deployment['commit'] }}">{{
+                            $deployment['commit'] }}</a></td>
+                    <td>{{ $deployment['timestamp'] }}</td>
+                    <td class="{{ $status_color }}">{{ $deployment['status'] }}</td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
     @else
-    <p>There are no project pipelines at this time.</p>
+    <p>There are no project deployments at this time.</p>
     @endif
 </div>
 

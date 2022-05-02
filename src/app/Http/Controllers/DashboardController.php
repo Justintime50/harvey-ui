@@ -48,12 +48,12 @@ class DashboardController extends Controller
         }
 
         try {
-            $pipelines_response = Http::withBasicAuth($this->harvey_secret, '')
+            $deployments_response = Http::withBasicAuth($this->harvey_secret, '')
                 ->timeout($this->timeout)
-                ->get("$this->harvey_domain_protocol://$this->harvey_domain/pipelines?page_size=$this->harvey_page_size");
-            $pipelines = $pipelines_response->successful() ? $pipelines_response->json()['pipelines'] : [];
+                ->get("$this->harvey_domain_protocol://$this->harvey_domain/deployments?page_size=$this->harvey_page_size");
+            $deployments = $deployments_response->successful() ? $deployments_response->json()['deployments'] : [];
         } catch (Throwable $error) {
-            $pipelines = [];
+            $deployments = [];
         }
 
         try {
@@ -65,32 +65,32 @@ class DashboardController extends Controller
             $locks = [];
         }
 
-        return view('/harvey', compact('harvey_status', 'projects', 'pipelines', 'locks'));
+        return view('/harvey', compact('harvey_status', 'projects', 'deployments', 'locks'));
     }
 
     /**
-     * Gets the log details of a single pipeline.
+     * Gets the log details of a single deployment.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function readPipeline(Request $request)
+    public function readDeployment(Request $request)
     {
-        $pipeline_id = $request->pipeline;
+        $deployment_id = $request->deployment;
 
         try {
             $response = Http::withBasicAuth($this->harvey_secret, '')
                 ->timeout($this->timeout)
-                ->get("$this->harvey_domain_protocol://$this->harvey_domain/pipelines/$pipeline_id");
-            $pipeline = $response->successful() ? $response->json() : null;
+                ->get("$this->harvey_domain_protocol://$this->harvey_domain/deployments/$deployment_id");
+            $deployment = $response->successful() ? $response->json() : null;
         } catch (Throwable $error) {
-            $pipeline = null;
+            $deployment = null;
         }
 
-        return view('harvey-pipeline', compact('pipeline'));
+        return view('harvey-deployment', compact('deployment'));
     }
 
     /**
-     * Gets all the pipelines for a project.
+     * Gets all the deployments for a project.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -110,13 +110,13 @@ class DashboardController extends Controller
         try {
             $project_response = Http::withBasicAuth($this->harvey_secret, '')
                 ->timeout($this->timeout)
-                ->get("$this->harvey_domain_protocol://$this->harvey_domain/pipelines?project=$project"); // TODO: Add page_size url param here
-            $pipelines = $project_response->successful() ? $project_response->json()['pipelines'] : null;
+                ->get("$this->harvey_domain_protocol://$this->harvey_domain/deployments?project=$project"); // TODO: Add page_size url param here
+            $deployments = $project_response->successful() ? $project_response->json()['deployments'] : null;
         } catch (Throwable $error) {
-            $pipelines = null;
+            $deployments = null;
         }
 
-        return view('harvey-project', compact('project', 'locked', 'pipelines'));
+        return view('harvey-project', compact('project', 'locked', 'deployments'));
     }
 
     /**
