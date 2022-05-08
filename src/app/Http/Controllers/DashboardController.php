@@ -65,7 +65,7 @@ class DashboardController extends Controller
             $locks = [];
         }
 
-        return view('/harvey', compact('harvey_status', 'projects', 'deployments', 'locks'));
+        return view('index', compact('harvey_status', 'projects', 'deployments', 'locks'));
     }
 
     /**
@@ -86,7 +86,7 @@ class DashboardController extends Controller
             $deployment = null;
         }
 
-        return view('harvey-deployment', compact('deployment'));
+        return view('deployment', compact('deployment'));
     }
 
     /**
@@ -116,7 +116,7 @@ class DashboardController extends Controller
             $deployments = null;
         }
 
-        return view('harvey-project', compact('project', 'locked', 'deployments'));
+        return view('project', compact('project', 'locked', 'deployments'));
     }
 
     /**

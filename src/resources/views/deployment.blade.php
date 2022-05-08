@@ -5,8 +5,8 @@
 <div class="container">
     <h1>Deployment</h1>
     <a href="/"><button class="btn btn-primary">Back to Dashboard</button></a>
-    @php $status_color = ( $deployment['status'] ?? '' == 'Success' ) ? 'text-success' : (( $deployment['status'] ??
-    '' == 'In-Progress' ) ? 'text-info' : 'text-danger'); @endphp
+    @php $status_color = ( $deployment['status'] == 'Success' ) ? 'text-success' : (( $deployment['status']
+    == 'In-Progress' ) ? 'text-info' : 'text-danger'); @endphp
     <p><b>Project:</b> {{ $deployment['project'] ?? '' }}</p>
     <p><b>Commit:</b> {{ $deployment['commit'] ?? '' }}</p>
     <p><b>Timestamp:</b> {{ $deployment['timestamp'] ?? '' }}</p>

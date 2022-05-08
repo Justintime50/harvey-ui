@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'DashboardController@dashboard')->name('harvey');
-Route::get('/harvey-deployment', 'DashboardController@readDeployment')->name('harvey-deployment');
-Route::get('/harvey-project', 'DashboardController@readProject')->name('harvey-project');
+Route::get('/', 'DashboardController@dashboard')->name('dashboard');
+Route::get('/deployment', 'DashboardController@readDeployment')->name('deployment');
+Route::get('/project', 'DashboardController@readProject')->name('project');
 
 Route::post('/unlock-project', 'DashboardController@unlockProject');
 Route::post('/lock-project', 'DashboardController@lockProject');

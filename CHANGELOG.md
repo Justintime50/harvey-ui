@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## NEXT RELEASE
+
+- Removes `harvey` prefix from all routes
+
 ## v0.2.0 (2022-05-01)
 
 - Renames all `pipeline` references to `deployment` to match the Harvey backend

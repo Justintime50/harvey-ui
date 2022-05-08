@@ -37,7 +37,7 @@
                 @php $status_color = ( $deployment['status'] == 'Success' ) ? 'text-success' : (( $deployment['status']
                 == 'In-Progress' ) ? 'text-info' : 'text-danger'); @endphp
                 <tr>
-                    <td><a href="harvey-deployment?deployment={{ $deployment['project'] }}-{{ $deployment['commit'] }}">{{
+                    <td><a href="deployment?deployment={{ $deployment['project'] }}-{{ $deployment['commit'] }}">{{
                             $deployment['commit'] }}</a></td>
                     <td>{{ $deployment['timestamp'] }}</td>
                     <td class="{{ $status_color }}">{{ $deployment['status'] }}</td>

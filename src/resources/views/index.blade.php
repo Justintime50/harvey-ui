@@ -22,7 +22,7 @@
                 @foreach ($projects as $project)
                 @php $lock_exists = false; @endphp
                 <tr>
-                    <td><a href="harvey-project?project={{ $project }}">{{ $project }}</a></td>
+                    <td><a href="project?project={{ $project }}">{{ $project }}</a></td>
                     <td>Unknown</td>
                     {{-- TODO: Fix the response of locks so it has the project name as the key so we don't need to
                     iterate like this --}}
@@ -62,7 +62,7 @@
                 @php $status_color = ( $deployment['status'] == 'Success' ) ? 'text-success' : (( $deployment['status']
                 == 'In-Progress' ) ? 'text-info' : 'text-danger'); @endphp
                 <tr>
-                    <td><a href="harvey-deployment?deployment={{ $deployment['project'] }}-{{ $deployment['commit'] }}">{{
+                    <td><a href="deployment?deployment={{ $deployment['project'] }}-{{ $deployment['commit'] }}">{{
                             $deployment['project'] }}@<br />{{ $deployment['commit'] }}</a></td>
                     <td>{{ $deployment['timestamp'] }}</td>
                     <td class="{{ $status_color }}">{{ $deployment['status'] }}</td>
