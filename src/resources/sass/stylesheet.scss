@@ -1,5 +1,7 @@
+// Elements
+
 body {
-    background-color: #212529;
+  background-color: #212529;
 }
 
 h1,
@@ -9,34 +11,39 @@ h4,
 h5,
 h6,
 p {
-    color: #fff;
+  color: #fff;
 }
 
 h1 {
-    font-size: 7vmin;
+  font-size: 7vmin;
 }
 
 h4 {
-    line-height: 1.375em;
-    font-weight: 400;
-    margin-bottom: 30px;
+  line-height: 1.375em;
+  font-weight: 400;
+  margin-bottom: 30px;
 }
 
 button {
-    margin: 20px 0px;
-}
-
-.container {
-    padding: 40px 20px;
+  margin: 20px 0;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
+// Overrides
+
+.container {
+  padding: 40px 20px;
+}
+
+// Custom
+
 .project-buttons {
-    display: flex;
-    button {
-        margin: 5px;
-    }
+  display: flex;
+
+  button {
+    margin: 5px;
+  }
 }

@@ -11,7 +11,7 @@ The UI for the the lightweight Docker Compose deployment platform - Harvey.
 
 </div>
 
-Harvey is the lightweight Docker Compose deployment platform. The API and backend can be found here: https://github.com/Justintime50/harvey.
+Harvey is the lightweight Docker Compose deployment platform. The API and backend can be found here: <https://github.com/Justintime50/harvey>.
 
 ## Install
 
@@ -68,6 +68,15 @@ composer seed
 
 # Lint the PHP files
 composer lint
+
+# Fix PHP linting
+composer fix
+
+# Lint the SASS files
+npm run lint
+
+# Fix SASS linting
+npm run fix
 
 # Compile SASS and Javascript during development
 npm run dev
