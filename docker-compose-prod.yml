@@ -16,7 +16,7 @@ services:
       timeout: 10s
       retries: 3
     labels:
-      - "traefik.http.routers.harvey-ui.rule=Host(`harvey.justinpaulhammond.com`) || Host(`www.harvey.justinpaulhammond.com`)"
+      - "traefik.http.routers.harvey-ui.rule=Host(`harvey.justinpaulhammond.com`, `www.harvey.justinpaulhammond.com`)"
       - "traefik.http.routers.harvey-ui.tls=true"
       - "traefik.http.routers.harvey-ui.tls.certresolver=letsencrypt"
     volumes:
