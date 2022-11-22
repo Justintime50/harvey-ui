@@ -4,11 +4,12 @@
 
     <div class="container">
         <h1>{{ $project }}</h1>
-        @php
-            $locked_status = !empty($locked) ? 'true' : 'false'; // TODO: This doesn't account for null or no lock present
-    $lock_color = $locked_status == 'false' ? 'text-success' : 'text-danger';
-    $lock_button_endpoint = $locked_status == 'true' ? '/unlock-project' : '/lock-project';
-        @endphp
+        <?php
+        // TODO: This doesn't account for null or no lock present
+        $locked_status = !empty($locked) ? 'true' : 'false';
+        $lock_color = $locked_status == 'false' ? 'text-success' : 'text-danger';
+        $lock_button_endpoint = $locked_status == 'true' ? '/unlock-project' : '/lock-project';
+        ?>
 
         <p><b>Locked:</b> <span class="{{ $lock_color }}">{{ $locked_status }}</span></p>
 
@@ -24,6 +25,7 @@
         </div>
 
         <h2 class="text-left">Deployments</h2>
+        <p>Total: {{ $deploymentsCount }}</p>
         @if ($deployments != [])
             <div class="table-responsive">
                 <table class="table-dark table-striped table">

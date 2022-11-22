@@ -1,8 +1,9 @@
 # CHANGELOG
 
-## NEXT RELEASE
+## v0.3.0 (2022-11-21)
 
 - Removes `harvey` prefix from all routes
+- Adds a count of deployments and projects to the UI
 
 ## v0.2.0 (2022-05-01)
 

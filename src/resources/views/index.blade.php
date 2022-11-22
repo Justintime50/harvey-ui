@@ -15,7 +15,7 @@
             <div class="table-responsive">
                 <table class="table-dark table-striped table">
                     <thead>
-                        <th>Project</th>
+                        <th>Project (Total: {{ $projectsCount }})</th>
                         <th>Status</th>
                         <th>Locked</th>
                     </thead>
@@ -54,7 +54,7 @@
             <div class="table-responsive">
                 <table class="table-dark table-striped table">
                     <thead>
-                        <th>Deployment</th>
+                        <th>Deployment (Total: {{ $deploymentsCount }})</th>
                         <th>Last Run</th>
                         <th>Status</th>
                     </thead>
@@ -63,8 +63,7 @@
                             @php $status_color = $deployment['status'] == 'Success' ? 'text-success' : ($deployment['status'] == 'In-Progress' ? 'text-info' : 'text-danger'); @endphp
                             <tr>
                                 <td>
-                                    <a
-                                        href="deployment?deployment={{ $deployment['project'] }}-{{ $deployment['commit'] }}">
+                                    <a href="deployment?deployment={{ $deployment['project'] }}-{{ $deployment['commit'] }}">
                                         {{ $deployment['project'] }}@<br />{{ $deployment['commit'] }}
                                     </a>
                                 </td>

@@ -43,6 +43,7 @@ class DashboardController extends Controller
                 ->timeout($this->timeout)
                 ->get("$this->harvey_domain_protocol://$this->harvey_domain/projects?page_size=$this->harvey_page_size");
             $projects = $projects_response->successful() ? $projects_response->json()['projects'] : [];
+            $projectsCount = $projects_response->successful() ? $projects_response->json()['total_count'] : 0;
         } catch (Throwable $error) {
             $projects = [];
         }
@@ -52,6 +53,7 @@ class DashboardController extends Controller
                 ->timeout($this->timeout)
                 ->get("$this->harvey_domain_protocol://$this->harvey_domain/deployments?page_size=$this->harvey_page_size");
             $deployments = $deployments_response->successful() ? $deployments_response->json()['deployments'] : [];
+            $deploymentsCount = $deployments_response->successful() ? $deployments_response->json()['total_count'] : 0;
         } catch (Throwable $error) {
             $deployments = [];
         }
@@ -65,7 +67,7 @@ class DashboardController extends Controller
             $locks = [];
         }
 
-        return view('index', compact('harvey_status', 'projects', 'deployments', 'locks'));
+        return view('index', compact('harvey_status', 'projects', 'deployments', 'locks', 'projectsCount', 'deploymentsCount'));
     }
 
     /**
@@ -112,11 +114,12 @@ class DashboardController extends Controller
                 ->timeout($this->timeout)
                 ->get("$this->harvey_domain_protocol://$this->harvey_domain/deployments?project=$project"); // TODO: Add page_size url param here
             $deployments = $project_response->successful() ? $project_response->json()['deployments'] : null;
+            $deploymentsCount = $project_response->successful() ? $project_response->json()['total_count'] : 0;
         } catch (Throwable $error) {
             $deployments = null;
         }
 
-        return view('project', compact('project', 'locked', 'deployments'));
+        return view('project', compact('project', 'locked', 'deployments', 'deploymentsCount'));
     }
 
     /**
