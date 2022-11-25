@@ -30,44 +30,44 @@ class DashboardController extends Controller
     public function dashboard()
     {
         try {
-            $harvey_health_response = Http::withBasicAuth($this->harvey_secret, '')
+            $harveyHealthResponse = Http::withBasicAuth($this->harvey_secret, '')
                 ->timeout($this->timeout)
                 ->get("$this->harvey_domain_protocol://$this->harvey_domain/health");
-            $harvey_status = $harvey_health_response->status();
+            $harveyStatus = $harveyHealthResponse->status();
         } catch (Throwable $error) {
-            $harvey_status = 500;
+            $harveyStatus = 500;
         }
 
         try {
-            $projects_response = Http::withBasicAuth($this->harvey_secret, '')
+            $projectsResponse = Http::withBasicAuth($this->harvey_secret, '')
                 ->timeout($this->timeout)
                 ->get("$this->harvey_domain_protocol://$this->harvey_domain/projects?page_size=$this->harvey_page_size");
-            $projects = $projects_response->successful() ? $projects_response->json()['projects'] : [];
-            $projectsCount = $projects_response->successful() ? $projects_response->json()['total_count'] : 0;
+            $projects = $projectsResponse->successful() ? $projectsResponse->json()['projects'] : [];
+            $projectsCount = $projectsResponse->successful() ? $projectsResponse->json()['total_count'] : 0;
         } catch (Throwable $error) {
             $projects = [];
         }
 
         try {
-            $deployments_response = Http::withBasicAuth($this->harvey_secret, '')
+            $deploymentsResponse = Http::withBasicAuth($this->harvey_secret, '')
                 ->timeout($this->timeout)
                 ->get("$this->harvey_domain_protocol://$this->harvey_domain/deployments?page_size=$this->harvey_page_size");
-            $deployments = $deployments_response->successful() ? $deployments_response->json()['deployments'] : [];
-            $deploymentsCount = $deployments_response->successful() ? $deployments_response->json()['total_count'] : 0;
+            $deployments = $deploymentsResponse->successful() ? $deploymentsResponse->json()['deployments'] : [];
+            $deploymentsCount = $deploymentsResponse->successful() ? $deploymentsResponse->json()['total_count'] : 0;
         } catch (Throwable $error) {
             $deployments = [];
         }
 
         try {
-            $locks_response = Http::withBasicAuth($this->harvey_secret, '')
+            $locksResponse = Http::withBasicAuth($this->harvey_secret, '')
                 ->timeout($this->timeout)
                 ->get("$this->harvey_domain_protocol://$this->harvey_domain/locks?page_size=$this->harvey_page_size");
-            $locks = $locks_response->successful() ? $locks_response->json()['locks'] : [];
+            $locks = $locksResponse->successful() ? $locksResponse->json()['locks'] : [];
         } catch (Throwable $error) {
             $locks = [];
         }
 
-        return view('index', compact('harvey_status', 'projects', 'deployments', 'locks', 'projectsCount', 'deploymentsCount'));
+        return view('index', compact('harveyStatus', 'projects', 'deployments', 'locks', 'projectsCount', 'deploymentsCount'));
     }
 
     /**
@@ -77,12 +77,12 @@ class DashboardController extends Controller
      */
     public function readDeployment(Request $request)
     {
-        $deployment_id = $request->deployment;
+        $deploymentId = $request->deployment;
 
         try {
             $response = Http::withBasicAuth($this->harvey_secret, '')
                 ->timeout($this->timeout)
-                ->get("$this->harvey_domain_protocol://$this->harvey_domain/deployments/$deployment_id");
+                ->get("$this->harvey_domain_protocol://$this->harvey_domain/deployments/$deploymentId");
             $deployment = $response->successful() ? $response->json() : null;
         } catch (Throwable $error) {
             $deployment = null;
@@ -101,20 +101,20 @@ class DashboardController extends Controller
         $project = $request->project;
 
         try {
-            $lock_response = Http::withBasicAuth($this->harvey_secret, '')
+            $lockResponse = Http::withBasicAuth($this->harvey_secret, '')
                 ->timeout($this->timeout)
                 ->get("$this->harvey_domain_protocol://$this->harvey_domain/locks/$project");
-            $locked = $lock_response->successful() ? $lock_response->json()['locked'] : null;
+            $locked = $lockResponse->successful() ? $lockResponse->json()['locked'] : null;
         } catch (Throwable $error) {
             $locked = null;
         }
 
         try {
-            $project_response = Http::withBasicAuth($this->harvey_secret, '')
+            $projectResponse = Http::withBasicAuth($this->harvey_secret, '')
                 ->timeout($this->timeout)
                 ->get("$this->harvey_domain_protocol://$this->harvey_domain/deployments?project=$project"); // TODO: Add page_size url param here
-            $deployments = $project_response->successful() ? $project_response->json()['deployments'] : null;
-            $deploymentsCount = $project_response->successful() ? $project_response->json()['total_count'] : 0;
+            $deployments = $projectResponse->successful() ? $projectResponse->json()['deployments'] : null;
+            $deploymentsCount = $projectResponse->successful() ? $projectResponse->json()['total_count'] : 0;
         } catch (Throwable $error) {
             $deployments = null;
         }
@@ -132,21 +132,21 @@ class DashboardController extends Controller
         $project = $request->project;
 
         try {
-            $locks_response = Http::withBasicAuth($this->harvey_secret, '')
+            $locksResponse = Http::withBasicAuth($this->harvey_secret, '')
                 ->timeout($this->timeout)
                 ->put("$this->harvey_domain_protocol://$this->harvey_domain/projects/$project/unlock");
 
-            $flash_type = $locks_response->successful() ? 'message' : 'error';
-            $flash_message = $locks_response->successful() ? 'Project unlocked successfully!' : json_encode($locks_response->json());
+            $flashType = $locksResponse->successful() ? 'message' : 'error';
+            $flashMessage = $locksResponse->successful() ? 'Project unlocked successfully!' : json_encode($locksResponse->json());
         } catch (Throwable $error) {
-            $flash_type = 'error';
-            $flash_message = "Sorry, there was a problem unlocking the project: $error";
+            $flashType = 'error';
+            $flashMessage = "Sorry, there was a problem unlocking the project: $error";
         }
 
-        $flash_type = $locks_response->successful() ? 'message' : 'error';
-        $flash_message = $locks_response->successful() ? 'Project unlocked successfully!' : json_encode($locks_response->json());
+        $flashType = $locksResponse->successful() ? 'message' : 'error';
+        $flashMessage = $locksResponse->successful() ? 'Project unlocked successfully!' : json_encode($locksResponse->json());
 
-        session()->flash($flash_type, $flash_message);
+        session()->flash($flashType, $flashMessage);
         return redirect()->back();
     }
 
@@ -160,18 +160,18 @@ class DashboardController extends Controller
         $project = $request->project;
 
         try {
-            $locks_response = Http::withBasicAuth($this->harvey_secret, '')
+            $locksResponse = Http::withBasicAuth($this->harvey_secret, '')
                 ->timeout($this->timeout)
                 ->put("$this->harvey_domain_protocol://$this->harvey_domain/projects/$project/lock");
 
-            $flash_type = $locks_response->successful() ? 'message' : 'error';
-            $flash_message = $locks_response->successful() ? 'Project locked successfully!' : json_encode($locks_response->json());
+            $flashType = $locksResponse->successful() ? 'message' : 'error';
+            $flashMessage = $locksResponse->successful() ? 'Project locked successfully!' : json_encode($locksResponse->json());
         } catch (Throwable $error) {
-            $flash_type = 'error';
-            $flash_message = "Sorry, there was a problem locking the project: $error";
+            $flashType = 'error';
+            $flashMessage = "Sorry, there was a problem locking the project: $error";
         }
 
-        session()->flash($flash_type, $flash_message);
+        session()->flash($flashType, $flashMessage);
         return redirect()->back();
     }
 }

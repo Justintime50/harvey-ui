@@ -5,9 +5,9 @@
     <div class="container">
         <h1>Harvey Dashboard</h1>
         @php
-            $harvey_status_icon = $harvey_status == 200 ? '<i class="fas fa-check text-success"></i>' : '<i class="fas fa-bomb text-danger"></i>';
+            $harveyStatus_icon = $harveyStatus == 200 ? '<i class="fas fa-check text-success"></i>' : '<i class="fas fa-bomb text-danger"></i>';
         @endphp
-        <p><b>Harvey Status:</b> {!! $harvey_status_icon !!}</p>
+        <p><b>Harvey Status:</b> {!! $harveyStatus_icon !!}</p>
 
         <p>The following are all of the projects currently deployed via Harvey.</p>
 
