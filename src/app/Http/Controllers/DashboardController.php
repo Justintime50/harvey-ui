@@ -46,6 +46,7 @@ class DashboardController extends Controller
             $projectsCount = $projectsResponse->successful() ? $projectsResponse->json()['total_count'] : 0;
         } catch (Throwable $error) {
             $projects = [];
+            $projectsCount = 0;
         }
 
         try {
@@ -56,6 +57,7 @@ class DashboardController extends Controller
             $deploymentsCount = $deploymentsResponse->successful() ? $deploymentsResponse->json()['total_count'] : 0;
         } catch (Throwable $error) {
             $deployments = [];
+            $deploymentsCount = 0;
         }
 
         try {

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Fixes a bug where a default deployment and project count wasn't set if an error occured when hitting the Harvey API
+
 ## v0.3.0 (2022-11-21)
 
 - Removes `harvey` prefix from all routes
