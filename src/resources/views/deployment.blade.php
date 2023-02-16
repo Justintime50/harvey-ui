@@ -8,7 +8,7 @@
         <p><b>Commit:</b> {{ $deployment['commit'] ?? '' }}</p>
         <p><b>Timestamp:</b> {{ $deployment['timestamp'] ?? '' }}</p>
 
-        @if (array_key_exists('attempts', $deployments))
+        @if (array_key_exists('attempts', $deployment))
             @php
                 usort($deployment['attempts'], function ($item1, $item2) {
                     return $item2['timestamp'] <=> $item1['timestamp'];
