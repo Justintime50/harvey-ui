@@ -8,12 +8,12 @@
         <p><b>Commit:</b> {{ $deployment['commit'] ?? '' }}</p>
         <p><b>Timestamp:</b> {{ $deployment['timestamp'] ?? '' }}</p>
 
-        @php
-            usort($deployment['attempts'], function ($item1, $item2) {
-                return $item2['timestamp'] <=> $item1['timestamp'];
-            });
-        @endphp
         @if (isset($deployment['attempts']))
+            @php
+                usort($deployment['attempts'], function ($item1, $item2) {
+                    return $item2['timestamp'] <=> $item1['timestamp'];
+                });
+            @endphp
             @foreach ($deployment['attempts'] as $attempt)
                 <hr />
                 @php $status_color = $attempt['status'] == 'Success' ? 'text-success' : ($attempt['status'] == 'In-Progress' ? 'text-info' : 'text-danger'); @endphp

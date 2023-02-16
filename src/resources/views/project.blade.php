@@ -37,12 +37,12 @@
                     </thead>
                     <tbody>
                         @foreach ($deployments as $deployment)
-                            @php
-                                usort($deployment['attempts'], function ($item1, $item2) {
-                                    return $item2['timestamp'] <=> $item1['timestamp'];
-                                });
-                            @endphp
                             @if (isset($deployment['attempts']))
+                                @php
+                                    usort($deployment['attempts'], function ($item1, $item2) {
+                                        return $item2['timestamp'] <=> $item1['timestamp'];
+                                    });
+                                @endphp
                                 @foreach ($deployment['attempts'] as $attempt)
                                     @php $statusColor = $attempt['status'] == 'Success' ? 'text-success' : ($attempt['status'] == 'In-Progress' ? 'text-info' : 'text-danger'); @endphp
                                     <tr>
