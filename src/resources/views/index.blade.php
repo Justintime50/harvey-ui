@@ -55,21 +55,31 @@
                 <table class="table-dark table-striped table">
                     <thead>
                         <th>Deployment (Total: {{ $deploymentsCount }})</th>
-                        <th>Last Run</th>
+                        <th>Attempt</th>
+                        <th>Timestamp</th>
                         <th>Status</th>
                     </thead>
                     <tbody>
                         @foreach ($deployments as $deployment)
-                            @php $status_color = $deployment['status'] == 'Success' ? 'text-success' : ($deployment['status'] == 'In-Progress' ? 'text-info' : 'text-danger'); @endphp
-                            <tr>
-                                <td>
-                                    <a href="deployment?deployment={{ $deployment['project'] }}-{{ $deployment['commit'] }}">
-                                        {{ $deployment['project'] }}@<br />{{ $deployment['commit'] }}
-                                    </a>
-                                </td>
-                                <td>{{ $deployment['timestamp'] }}</td>
-                                <td class="{{ $status_color }}">{{ $deployment['status'] }}</td>
-                            </tr>
+                            @php
+                                usort($deployment['attempts'], function ($item1, $item2) {
+                                    return $item2['timestamp'] <=> $item1['timestamp'];
+                                });
+                            @endphp
+                            @foreach ($deployment['attempts'] as $attempt)
+                                @php $statusColor = $attempt['status'] == 'Success' ? 'text-success' : ($attempt['status'] == 'In-Progress' ? 'text-info' : 'text-danger'); @endphp
+                                <tr>
+                                    <td>
+                                        <a
+                                            href="deployment?deployment={{ $deployment['project'] }}-{{ $deployment['commit'] }}">
+                                            {{ $deployment['project'] }}@<br />{{ $deployment['commit'] }}
+                                        </a>
+                                    </td>
+                                    <td>{{ $attempt['attempt'] ?? 'Unknown' }}</td>
+                                    <td>{{ $attempt['timestamp'] }}</td>
+                                    <td class="{{ $statusColor }}">{{ $attempt['status'] }}</td>
+                                </tr>
+                            @endforeach
                         @endforeach
                     </tbody>
                 </table>
