@@ -13,13 +13,15 @@
                 return $item2['timestamp'] <=> $item1['timestamp'];
             });
         @endphp
-        @foreach ($deployment['attempts'] as $attempt)
-            <hr />
-            @php $status_color = $attempt['status'] == 'Success' ? 'text-success' : ($attempt['status'] == 'In-Progress' ? 'text-info' : 'text-danger'); @endphp
-            <p><b>Attempt:</b> {{ $attempt['attempt'] ?? '' }}</p>
-            <p><b>Timestamp:</b> {{ $attempt['timestamp'] ?? '' }}</p>
-            <p><b>Status:</b><span class="{{ $status_color }}"> {{ $attempt['status'] ?? '' }}</span></p>
-            <p><b>Logs:</b><br />{!! nl2br(e($attempt['log'] ?? '')) !!}</p>
-        @endforeach
+        @if (isset($deployment['attempts']))
+            @foreach ($deployment['attempts'] as $attempt)
+                <hr />
+                @php $status_color = $attempt['status'] == 'Success' ? 'text-success' : ($attempt['status'] == 'In-Progress' ? 'text-info' : 'text-danger'); @endphp
+                <p><b>Attempt:</b> {{ $attempt['attempt'] ?? '' }}</p>
+                <p><b>Timestamp:</b> {{ $attempt['timestamp'] ?? '' }}</p>
+                <p><b>Status:</b><span class="{{ $status_color }}"> {{ $attempt['status'] ?? '' }}</span></p>
+                <p><b>Logs:</b><br />{!! nl2br(e($attempt['log'] ?? '')) !!}</p>
+            @endforeach
+        @endif
     </div>
 @endsection

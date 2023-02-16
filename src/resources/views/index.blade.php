@@ -66,20 +66,22 @@
                                     return $item2['timestamp'] <=> $item1['timestamp'];
                                 });
                             @endphp
-                            @foreach ($deployment['attempts'] as $attempt)
-                                @php $statusColor = $attempt['status'] == 'Success' ? 'text-success' : ($attempt['status'] == 'In-Progress' ? 'text-info' : 'text-danger'); @endphp
-                                <tr>
-                                    <td>
-                                        <a
-                                            href="deployment?deployment={{ $deployment['project'] }}-{{ $deployment['commit'] }}">
-                                            {{ $deployment['project'] }}@<br />{{ $deployment['commit'] }}
-                                        </a>
-                                    </td>
-                                    <td>{{ $attempt['attempt'] ?? 'Unknown' }}</td>
-                                    <td>{{ $attempt['timestamp'] }}</td>
-                                    <td class="{{ $statusColor }}">{{ $attempt['status'] }}</td>
-                                </tr>
-                            @endforeach
+                            @if (isset($deployment['attempts']))
+                                @foreach ($deployment['attempts'] as $attempt)
+                                    @php $statusColor = $attempt['status'] == 'Success' ? 'text-success' : ($attempt['status'] == 'In-Progress' ? 'text-info' : 'text-danger'); @endphp
+                                    <tr>
+                                        <td>
+                                            <a
+                                                href="deployment?deployment={{ $deployment['project'] }}-{{ $deployment['commit'] }}">
+                                                {{ $deployment['project'] }}@<br />{{ $deployment['commit'] }}
+                                            </a>
+                                        </td>
+                                        <td>{{ $attempt['attempt'] ?? 'Unknown' }}</td>
+                                        <td>{{ $attempt['timestamp'] }}</td>
+                                        <td class="{{ $statusColor }}">{{ $attempt['status'] }}</td>
+                                    </tr>
+                                @endforeach
+                            @endif
                         @endforeach
                     </tbody>
                 </table>
