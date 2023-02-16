@@ -2,6 +2,7 @@
 
 ## Next Release
 
+- Overhauls UI to account for new Harvey deployment attempt schema in responses
 - Fixes a bug where a default deployment and project count wasn't set if an error occured when hitting the Harvey API
 
 ## v0.3.0 (2022-11-21)
