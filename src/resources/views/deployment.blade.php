@@ -2,26 +2,57 @@
 
 @section('content')
     <div class="container">
-        <h1>Deployment</h1>
-        <a href="/"><button class="btn btn-primary">Back to Dashboard</button></a>
-        <p><b>Project:</b> {{ $deployment['project'] ?? '' }}</p>
-        <p><b>Commit:</b> {{ $deployment['commit'] ?? '' }}</p>
-        <p><b>Timestamp:</b> {{ $deployment['timestamp'] ?? '' }}</p>
+        <div class="card bg-secondary text-white">
+            <div class="card-header">
+                Deployment
+            </div>
+            <div class="card-body">
+                <a href="/"><button class="btn btn-primary mt-2 mb-3">Back to Dashboard</button></a>
+                <ul>
+                    <li>Project: <a href="project?project={{ $deployment['project'] }}">{{ $deployment['project'] }}</a></li>
+                    <li>Commit: {{ $deployment['commit'] ?? '' }}</li>
+                    <li>Timestamp: {{ $deployment['timestamp'] ?? '' }}</li>
+                </ul>
 
-        @if (array_key_exists('attempts', $deployment))
-            @php
-                usort($deployment['attempts'], function ($item1, $item2) {
-                    return $item2['timestamp'] <=> $item1['timestamp'];
-                });
-            @endphp
-            @foreach ($deployment['attempts'] as $attempt)
-                <hr />
-                @php $status_color = $attempt['status'] == 'Success' ? 'text-success' : ($attempt['status'] == 'In-Progress' ? 'text-info' : 'text-danger'); @endphp
-                <p><b>Attempt:</b> {{ $attempt['attempt'] ?? '' }}</p>
-                <p><b>Timestamp:</b> {{ $attempt['timestamp'] ?? '' }}</p>
-                <p><b>Status:</b><span class="{{ $status_color }}"> {{ $attempt['status'] ?? '' }}</span></p>
-                <p><b>Logs:</b><br />{!! nl2br(e($attempt['log'] ?? '')) !!}</p>
-            @endforeach
-        @endif
-    </div>
-@endsection
+                @if (array_key_exists('attempts', $deployment))
+                    @php
+                        usort($deployment['attempts'], function ($item1, $item2) {
+                            return $item2['timestamp'] <=> $item1['timestamp'];
+                        });
+                    @endphp
+                    <div class="accordion" id="accordion">
+                        @foreach ($deployment['attempts'] as $attempt)
+                            @php $statusColor = $attempt['status'] == 'Success' ? 'text-success' : ($attempt['status'] == 'In-Progress' ? 'text-info' : 'text-danger'); @endphp
+
+                            <div class="accordion-item bg-dark">
+                                <h2 class="accordion-header" id="attemptHeading-{{ $attempt['attempt'] }}">
+                                    <button class="accordion-button bg-dark text-white" type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#attemptContent-{{ $attempt['attempt'] ?? '' }}"
+                                        aria-expanded="false"
+                                        aria-controls="attemptContent-{{ $attempt['attempt'] ?? '' }}">
+                                        <span class="col">
+                                            Attempt:</b> {{ $attempt['attempt'] ?? '' }}</span>
+                                        <span class="col">
+                                            Timestamp: {{ $attempt['timestamp'] ?? '' }}
+                                        </span>
+                                        <span class="col {{ $statusColor }}">
+                                            {{ $attempt['status'] ?? '' }}
+                                        </span>
+                                    </button>
+                                </h2>
+
+                                <div id="attemptContent-{{ $attempt['attempt'] ?? '' }}"
+                                    class="accordion-collapse collapse"
+                                    aria-labelledby="attemptHeading-{{ $attempt['attempt'] }}" data-bs-parent="#accordion">
+                                    <div class="accordion-body text-white">
+                                        <p>{!! nl2br(e($attempt['log'] ?? '')) !!}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
+            </div>
+        </div>
+    @endsection
