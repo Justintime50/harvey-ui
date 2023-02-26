@@ -122,7 +122,16 @@ class DashboardController extends Controller
             $deployments = null;
         }
 
-        return view('project', compact('project', 'locked', 'deployments', 'deploymentsCount'));
+        try {
+            $webhookResponse = Http::withBasicAuth($this->harveySecret, '')
+                ->timeout($this->timeout)
+                ->get("$this->harveyDomainProtocol://$this->harveyDomain/projects/$project/webhook");
+            $webhook = $webhookResponse->successful() ? $webhookResponse->json() : null;
+        } catch (Throwable $error) {
+            $webhook = null;
+        }
+
+        return view('project', compact('project', 'locked', 'deployments', 'deploymentsCount', 'webhook'));
     }
 
     /**

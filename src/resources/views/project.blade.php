@@ -73,4 +73,31 @@
                 @endif
             </div>
         </div>
+
+        <div class="card bg-secondary mt-3 text-white">
+            <div class="card-header">
+                Webhook
+            </div>
+            <div class="card-body">
+                <div class="accordion" id="accordion">
+                    <div class="accordion-item bg-dark">
+                        <h2 class="accordion-header" id="webhookHeading">
+                            <button class="accordion-button bg-dark text-white" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#webhookContent" aria-expanded="false" aria-controls="webhookContent">
+                                Webhook Content
+                            </button>
+                        </h2>
+                    </div>
+
+                    <div id="webhookContent" class="accordion-collapse collapse" aria-labelledby="webhookHeading"
+                        data-bs-parent="#accordion">
+                        <div class="accordion-body text-white">
+                            @if (isset($webhook))
+                                @json($webhook)
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     @endsection
