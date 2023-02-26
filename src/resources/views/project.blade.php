@@ -94,6 +94,8 @@
                         <div class="accordion-body text-white">
                             @if (isset($webhook))
                                 @json($webhook)
+                            @else
+                                NA
                             @endif
                         </div>
                     </div>
