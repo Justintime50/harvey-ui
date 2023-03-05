@@ -18,13 +18,22 @@ main() {
     # Spin up the project (assumes you already have Traefik setup)
     docker compose up -d --build --quiet-pull
 
-    cd src || exit 1
+    # Run a healthcheck to ensure the container is running
+    for ((ATTEMPT = 0; ATTEMPT <= 10; ATTEMPT += 1)); do
+        if ! healthcheck; then
+            echo "Container is not running on attempt #$ATTEMPT, retrying..."
+            sleep 1
+        else
+            echo "Setup complete!"
+            exit 0
+        fi
+    done
 
-    # TODO: Uncomment this once there is a DB
-    # Run database migrations once the database container is up and able to accept connections
-    # echo "Waiting for database container to boot before migrating and seeding..."
-    # sleep 15
-    # composer migrate-seed
+    exit 1
+}
+
+healthcheck() {
+    docker ps | grep -q harvey-ui-harvey-ui-1
 }
 
 main
