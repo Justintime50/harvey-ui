@@ -15,6 +15,7 @@ jobs:
           cp src/.env-example src/.env
           ./setup.sh
           docker ps | grep -q harvey-ui-harvey-ui-1
+          docker exec -t harvey-ui-harvey-ui-1 curl -f http://localhost
   lint-php:
     runs-on: ubuntu-latest
     steps:
