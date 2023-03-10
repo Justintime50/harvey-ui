@@ -49,9 +49,10 @@
                                     @if (array_key_exists('attempts', $deployment))
                                         @php
                                             usort($deployment['attempts'], function ($item1, $item2) {
-                                                return $item2['timestamp'] <=> $item1['timestamp'];
+                                                // By returning results in a descending order, the most recent attempt will be the 0 index
+                                                return $item2['timestamp'] <=> $item1['timestamp']; // Descending
                                             });
-                                            $statusColor = end($deployment['attempts'])['status'] == 'Success' ? 'text-success' : (end($deployment['attempts'])['status'] == 'In-Progress' ? 'text-info' : 'text-danger');
+                                            $statusColor = $deployment['attempts'][0]['status'] == 'Success' ? 'text-success' : ($deployment['attempts'][0]['status'] == 'In-Progress' ? 'text-info' : 'text-danger');
                                         @endphp
                                         <tr>
                                             <td>
@@ -60,7 +61,8 @@
                                             </td>
                                             <td>{{ count($deployment['attempts']) }}</td>
                                             <td>{{ $deployment['timestamp'] }}</td>
-                                            <td class="{{ $statusColor }}">{{ end($deployment['attempts'])['status'] }}
+                                            <td class="{{ $statusColor }}">
+                                                {{ $deployment['attempts'][0]['status'] }}
                                             </td>
                                         </tr>
                                     @endif
