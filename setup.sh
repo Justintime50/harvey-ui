@@ -24,6 +24,8 @@ main() {
             echo "Container is not running on attempt #$ATTEMPT, retrying..."
             sleep 1
         else
+            cd src || exit 1
+            composer migrate-seed
             echo "Setup complete!"
             exit 0
         fi
@@ -34,6 +36,8 @@ main() {
 
 healthcheck() {
     docker ps | grep -q harvey-ui-harvey-ui-1
+    docker ps | grep -q harvey-ui-harvey-ui-db-1
+    docker exec -t harvey-ui-harvey-ui-db-1 mysql -uroot -ppassword -e "show databases;" &>/dev/null || false
 }
 
 main

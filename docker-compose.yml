@@ -10,6 +10,19 @@ services:
       - traefik.enable=true
     env_file:
       - src/.env
+  harvey-ui-db:
+    image: 'mariadb:10.8.2'
+    restart: always
+    volumes:
+      - database-data:/var/lib/mysql
+    env_file:
+      - .env
+    networks:
+      - harvey-ui
+
+volumes:
+  database-data:
+    driver: local
 
 networks:
   traefik:

@@ -2,6 +2,9 @@
 
 ## Next Release
 
+- Adds authentication system
+  - Users must now be logged in to view or perform actions with Harvey
+  - Harvey does not have any concept of permissions, anyone given access to Harvey has access to it all
 - Overhauls UI to account for new Harvey deployment attempt schema in responses
 - Adds project webhook to project page
 - Fixes a bug where a default deployment and project count wasn't set if an error occured when hitting the Harvey API
