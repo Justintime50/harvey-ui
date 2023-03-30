@@ -5,6 +5,8 @@
 - Overhauls UI to account for new Harvey deployment attempt schema in responses
 - Adds project webhook to project page
 - Fixes a bug where a default deployment and project count wasn't set if an error occured when hitting the Harvey API
+- Migrate from Webpack to Vite
+- Bumps all dependencies
 
 ## v0.3.0 (2022-11-21)
 
