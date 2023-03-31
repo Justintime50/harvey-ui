@@ -1,6 +1,7 @@
 // Elements
 
 body {
+  color: #fff;
   background-color: #212529;
 }
 
@@ -35,6 +36,11 @@ a:visited {
 
 .container {
   padding: 40px 20px;
+}
+
+.navbar-brand,
+.nav-link {
+  color: #fff !important;
 }
 
 .accordion-button::after {

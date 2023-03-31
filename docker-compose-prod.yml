@@ -21,3 +21,17 @@ services:
       - "traefik.http.routers.harvey-ui.tls.certresolver=letsencrypt"
     volumes:
       - ./src/storage:/var/www/html/storage
+  harvey-ui-db:
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: "512M"
+        reservations:
+          cpus: "0.25"
+          memory: "128M"
+    healthcheck:
+      test: ["CMD", "mysql", "-u${MARIADB_USER}", "-p${MARIADB_PASSWORD}", "-e", "show databases;"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
