@@ -12,7 +12,7 @@ jobs:
         run: docker network create traefik
       - name: Setup Docker container
         run: |
-          cp src/.env-example src/.env
+          cp src/.env-example src/.env && cp .env-example .env
           ./setup.sh
   lint-php:
     runs-on: ubuntu-latest
