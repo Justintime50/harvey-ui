@@ -23,10 +23,13 @@ Auth::routes([
 ]);
 
 Route::middleware('auth')->group(function () {
+    // TODO: Make all these routes follow REST conventions
     Route::get('/', 'DashboardController@dashboard')->name('dashboard');
     Route::get('/deployment', 'DashboardController@readDeployment')->name('deployment');
     Route::get('/project', 'DashboardController@readProject')->name('project');
+    Route::get('/users/{id}', 'UserController@showProfile');
 
+    Route::post('/users/{id}/password', 'UserController@changePassword');
     Route::post('/unlock-project', 'DashboardController@unlockProject');
     Route::post('/lock-project', 'DashboardController@lockProject');
 });
