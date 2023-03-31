@@ -40,9 +40,9 @@
         "fix": "./bin/phpcbf --standard=./node_modules/justintime50-styles/src/php/phpcs.xml .",
         "lint": "./bin/phpcs --standard=./node_modules/justintime50-styles/src/php/phpcs.xml .",
         "test": "./bin/phpunit",
-        "migrate": "docker exec -t harvey-ui-harvey-ui-1 php artisan migrate",
-        "migrate-fresh": "docker exec -t harvey-ui-harvey-ui-1 php artisan migrate:fresh",
-        "migrate-seed": "docker exec -t harvey-ui-harvey-ui-1 php artisan migrate:fresh --seed",
+        "migrate": "docker exec -t harvey-ui-harvey-ui-1 php artisan migrate --no-interaction --force",
+        "migrate-fresh": "docker exec -t harvey-ui-harvey-ui-1 php artisan migrate:fresh --no-interaction --force",
+        "migrate-seed": "docker exec -t harvey-ui-harvey-ui-1 php artisan migrate:fresh --seed --no-interaction --force",
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
