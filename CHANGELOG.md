@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next Release
+## v0.4.0 (2023-03-31)
 
 - Adds authentication system
   - Users must now be logged in to view or perform actions with Harvey
