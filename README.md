@@ -25,13 +25,13 @@ cp src/.env-example src/.env && cp database.env-example database.env
 
 ### Environment Variables
 
-**Required**
+#### Required
 
 - `HARVEY_DOMAIN_PROTOCOL`
 - `HARVEY_DOMAIN`
 - `HARVEY_SECRET`
 
-**Optional**
+#### Optional
 
 - `HARVEY_TIMEOUT`
 - `HARVEY_PAGE_SIZE`
@@ -39,6 +39,10 @@ cp src/.env-example src/.env && cp database.env-example database.env
 ## Usage
 
 Visit `harvey-ui.localhost` in a browser to get started.
+
+### Default Login
+
+The default login is `admin@harvey.com` and `password`. **Make sure to update the email/password after first login!**
 
 ## Deploy
 
