@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Next Release
+
+- Adds the ability to redeploy a project with the click of a button
+- Fixes all routes to follow REST conventions
+
 ## v0.4.0 (2023-03-31)
 
 - Adds authentication system

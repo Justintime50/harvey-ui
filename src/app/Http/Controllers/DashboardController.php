@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Throwable;
 
@@ -78,14 +77,12 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function readDeployment()
+    public function showDeployment(string $id)
     {
-        $deploymentId = request()->get('deployment');
-
         try {
             $response = Http::withBasicAuth($this->harveySecret, '')
                 ->timeout($this->timeout)
-                ->get("$this->harveyDomainProtocol://$this->harveyDomain/deployments/$deploymentId");
+                ->get("$this->harveyDomainProtocol://$this->harveyDomain/deployments/$id");
             $deployment = $response->successful() ? $response->json() : null;
         } catch (Throwable $error) {
             $deployment = null;
@@ -99,10 +96,8 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function readProject()
+    public function showProject(string $project)
     {
-        $project = request()->get('project');
-
         try {
             $lockResponse = Http::withBasicAuth($this->harveySecret, '')
                 ->timeout($this->timeout)
@@ -139,24 +134,22 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function unlockProject()
+    public function unlockProject(string $project)
     {
-        $project = request()->get('project');
-
         try {
-            $locksResponse = Http::withBasicAuth($this->harveySecret, '')
+            $response = Http::withBasicAuth($this->harveySecret, '')
                 ->timeout($this->timeout)
                 ->put("$this->harveyDomainProtocol://$this->harveyDomain/projects/$project/unlock");
 
-            $flashType = $locksResponse->successful() ? 'message' : 'error';
-            $flashMessage = $locksResponse->successful() ? 'Project unlocked successfully!' : json_encode($locksResponse->json());
+            $flashType = $response->successful() ? 'message' : 'error';
+            $flashMessage = $response->successful() ? 'Project unlocked successfully!' : json_encode($response->json());
         } catch (Throwable $error) {
             $flashType = 'error';
             $flashMessage = "Sorry, there was a problem unlocking the project: $error";
         }
 
-        $flashType = $locksResponse->successful() ? 'message' : 'error';
-        $flashMessage = $locksResponse->successful() ? 'Project unlocked successfully!' : json_encode($locksResponse->json());
+        $flashType = $response->successful() ? 'message' : 'error';
+        $flashMessage = $response->successful() ? 'Project unlocked successfully!' : json_encode($response->json());
 
         session()->flash($flashType, $flashMessage);
         return redirect()->back();
@@ -167,20 +160,41 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function lockProject()
+    public function lockProject(string $project)
     {
-        $project = request()->get('project');
-
         try {
-            $locksResponse = Http::withBasicAuth($this->harveySecret, '')
+            $response = Http::withBasicAuth($this->harveySecret, '')
                 ->timeout($this->timeout)
                 ->put("$this->harveyDomainProtocol://$this->harveyDomain/projects/$project/lock");
 
-            $flashType = $locksResponse->successful() ? 'message' : 'error';
-            $flashMessage = $locksResponse->successful() ? 'Project locked successfully!' : json_encode($locksResponse->json());
+            $flashType = $response->successful() ? 'message' : 'error';
+            $flashMessage = $response->successful() ? 'Project locked successfully!' : json_encode($response->json());
         } catch (Throwable $error) {
             $flashType = 'error';
             $flashMessage = "Sorry, there was a problem locking the project: $error";
+        }
+
+        session()->flash($flashType, $flashMessage);
+        return redirect()->back();
+    }
+
+    /**
+     * Redeploys a project.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function redeployProject(string $project)
+    {
+        try {
+            $response = Http::withBasicAuth($this->harveySecret, '')
+                ->timeout($this->timeout)
+                ->post("$this->harveyDomainProtocol://$this->harveyDomain/projects/$project/redeploy");
+
+            $flashType = $response->successful() ? 'message' : 'error';
+            $flashMessage = $response->successful() ? 'Project redeploy started!' : json_encode($response->json());
+        } catch (Throwable $error) {
+            $flashType = 'error';
+            $flashMessage = "Sorry, there was a problem redeploying the project: $error";
         }
 
         session()->flash($flashType, $flashMessage);

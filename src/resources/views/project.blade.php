@@ -14,12 +14,16 @@
             }
             $lockedStatus = !empty($locked) ? 'true' : 'false';
             $lockColor = $lockedStatus == 'false' ? 'text-success bg-dark' : 'text-danger bg-dark';
-            $lockButtonEndpoint = $lockedStatus == 'true' ? '/unlock-project' : '/lock-project';
+            $lockButtonEndpoint = $lockedStatus == 'true' ? "/projects/$project/unlock" : "/projects/$project/lock";
         @endphp
 
         <div class="project-buttons">
             <a href="/"><button class="btn btn-primary">Back to Dashboard</button></a>
-            <button class="btn btn-warning" disabled>Redeploy</button>
+            <form action="/projects/{{ $project }}/redeploy" method="post">
+                @csrf
+                <input name="project" value="{{ $project }}" hidden>
+                <button class="btn btn-warning">Redeploy</button>
+            </form>
             <form action="{{ $lockButtonEndpoint }}" method="post">
                 @csrf
                 <input name="project" value="{{ $project }}" hidden>
@@ -57,7 +61,7 @@
                                         <tr>
                                             <td>
                                                 <a
-                                                    href="deployment?deployment={{ $deployment['project'] }}-{{ $deployment['commit'] }}">{{ $deployment['commit'] }}</a>
+                                                    href="deployments/{{ $deployment['project'] }}-{{ $deployment['commit'] }}">{{ $deployment['commit'] }}</a>
                                             </td>
                                             <td>{{ count($deployment['attempts']) }}</td>
                                             <td>{{ $deployment['timestamp'] }}</td>

@@ -23,13 +23,19 @@ Auth::routes([
 ]);
 
 Route::middleware('auth')->group(function () {
-    // TODO: Make all these routes follow REST conventions
+    // General
     Route::get('/', 'DashboardController@dashboard')->name('dashboard');
-    Route::get('/deployment', 'DashboardController@readDeployment')->name('deployment');
-    Route::get('/project', 'DashboardController@readProject')->name('project');
-    Route::get('/users/{id}', 'UserController@showProfile');
 
+    // Projects
+    Route::get('/projects/{project}', 'DashboardController@showProject');
+    Route::post('/projects/{project}/redeploy', 'DashboardController@redeployProject');
+    Route::post('/projects/{project}/unlock', 'DashboardController@unlockProject');
+    Route::post('/projects/{project}/lock', 'DashboardController@lockProject');
+
+    // Deployments
+    Route::get('/deployments/{id}', 'DashboardController@showDeployment')->name('deployment');
+
+    // Users
+    Route::get('/users/{id}', 'UserController@showProfile');
     Route::post('/users/{id}/password', 'UserController@changePassword');
-    Route::post('/unlock-project', 'DashboardController@unlockProject');
-    Route::post('/lock-project', 'DashboardController@lockProject');
 });

@@ -31,7 +31,7 @@
                                         @foreach ($projects as $project)
                                             @php $lock_exists = false; @endphp
                                             <tr>
-                                                <td><a href="project?project={{ $project }}">{{ $project }}</a>
+                                                <td><a href="projects/{{ $project }}">{{ $project }}</a>
                                                 </td>
                                                 <td>Unknown</td>
                                                 {{-- TODO: Fix the response of locks so it has the project name as the key so we don't need to
@@ -92,11 +92,11 @@
                                                     $statusColor = $deployment['attempts'][0]['status'] == 'Success' ? 'text-success' : ($deployment['attempts'][0]['status'] == 'In-Progress' ? 'text-info' : 'text-danger');
                                                 @endphp
                                                 <tr>
-                                                    <td><a href="project?project={{ $deployment['project'] }}">{{ $deployment['project'] }}
+                                                    <td><a href="projects/{{ $deployment['project'] }}">{{ $deployment['project'] }}
                                                     </td>
                                                     <td>
                                                         <a
-                                                            href="deployment?deployment={{ $deployment['project'] }}-{{ $deployment['commit'] }}">{{ $deployment['commit'] }}</a>
+                                                            href="deployments/{{ $deployment['project'] }}-{{ $deployment['commit'] }}">{{ $deployment['commit'] }}</a>
                                                     </td>
                                                     <td>{{ count($deployment['attempts']) }}</td>
                                                     <td>{{ $deployment['timestamp'] }}</td>

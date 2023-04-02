@@ -9,7 +9,7 @@
             <div class="card-body">
                 <a href="/"><button class="btn btn-primary mt-2 mb-3">Back to Dashboard</button></a>
                 <ul>
-                    <li>Project: <a href="project?project={{ $deployment['project'] }}">{{ $deployment['project'] }}</a></li>
+                    <li>Project: <a href="/projects/{{ $deployment['project'] }}">{{ $deployment['project'] }}</a></li>
                     <li>Commit: {{ $deployment['commit'] ?? '' }}</li>
                     <li>Timestamp: {{ $deployment['timestamp'] ?? '' }}</li>
                 </ul>
