@@ -2,12 +2,6 @@
 
 @section('content')
     <div class="container-fluid">
-        <h1 class="pt-3">Harvey Dashboard</h1>
-        @php
-            $harveyStatus_icon = $harveyStatus == 200 ? '<i class="fas fa-check text-success"></i>' : '<i class="fas fa-bomb text-danger"></i>';
-        @endphp
-        <p><b>Harvey Status:</b> {!! $harveyStatus_icon !!}</p>
-
         <div class="row">
             <div class="col-lg-6 mt-3 mb-3">
                 <div class="card bg-secondary text-white">
@@ -15,9 +9,7 @@
                         Projects
                     </div>
                     <div class="card-body">
-                        <p>The following are all of the projects currently deployed via Harvey.</p>
-
-                        <p>Total: {{ $projectsCount }}</p>
+                        <h5>Total: {{ $projectsCount }}</h5>
 
                         @if ($projects != [])
                             <div class="table-responsive">
@@ -68,9 +60,7 @@
                             Deployments
                         </div>
                         <div class="card-body">
-                            <p>The following are all of the most recent deployments done via Harvey.</p>
-
-                            <p>Total: {{ $deploymentsCount }}</p>
+                            <h5>Total: {{ $deploymentsCount }}</h5>
 
                             <div class="table-responsive">
                                 <table class="table-dark table-striped table">

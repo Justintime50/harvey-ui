@@ -18,15 +18,6 @@ class DashboardController extends Controller
     public function dashboard(Request $request): View
     {
         try {
-            $harveyHealthResponse = Http::withBasicAuth($this->harveySecret, '')
-                ->timeout($this->timeout)
-                ->get("$this->harveyDomainProtocol://$this->harveyDomain/health");
-            $harveyStatus = $harveyHealthResponse->status();
-        } catch (Throwable $error) {
-            $harveyStatus = 500;
-        }
-
-        try {
             $projectsResponse = Http::withBasicAuth($this->harveySecret, '')
                 ->timeout($this->timeout)
                 ->get("$this->harveyDomainProtocol://$this->harveyDomain/projects?page_size=$this->harveyPageSize");
@@ -57,6 +48,6 @@ class DashboardController extends Controller
             $locks = [];
         }
 
-        return view('index', compact('harveyStatus', 'projects', 'deployments', 'locks', 'projectsCount', 'deploymentsCount'));
+        return view('index', compact('projects', 'deployments', 'locks', 'projectsCount', 'deploymentsCount'));
     }
 }

@@ -6,20 +6,21 @@
         <h1>{{ $project }}</h1>
         @php
             if (!empty($locked)) {
-                $lockedStatus = 'true';
+                $lockedAlertMessage = 'true';
             } elseif (empty($locked)) {
-                $lockedStatus = 'false';
+                $lockedAlertMessage = 'false';
             } else {
-                $lockedStatus = 'Unknown';
+                $lockedAlertMessage = 'Unknown';
             }
-            $lockedStatus = !empty($locked) ? 'true' : 'false';
-            $lockColor = $lockedStatus == 'false' ? 'text-success bg-dark' : 'text-danger bg-dark';
-            $lockButtonEndpoint = $lockedStatus == 'true' ? "/projects/$project/unlock" : "/projects/$project/lock";
+            $lockedAlertMessage = !empty($locked) ? 'Project is locked!' : 'Project is not locked.';
+            $lockedAlertClass = $lockedAlertMessage == 'Project is locked!' ? 'alert alert-danger' : 'alert alert-success';
+            $lockButtonEndpoint = $lockedAlertMessage == 'true' ? "/projects/$project/unlock" : "/projects/$project/lock";
         @endphp
 
         <div class="project-buttons">
             <a href="/"><button class="btn btn-primary">Back to Dashboard</button></a>
-            <form action="/projects/{{ $project }}/redeploy" method="post">
+            <form action="/projects/{{ $project }}/redeploy" method="post"
+                onsubmit="return confirm('Confirm redeploy?');">
                 @csrf
                 <input name="project" value="{{ $project }}" hidden>
                 <button class="btn btn-warning">Redeploy</button>
@@ -37,8 +38,8 @@
                 Deployments
             </div>
             <div class="card-body">
-                <p>Locked: <span class="{{ $lockColor }}">{{ $lockedStatus }}</span></p>
-                <p>Total: {{ $deploymentsCount }}</p>
+                <div class="{{ $lockedAlertClass }}">{{ $lockedAlertMessage }}</div>
+                <h5>Total: {{ $deploymentsCount }}</h5>
                 @if ($deployments != [])
                     <div class="table-responsive">
                         <table class="table-dark table-striped table">
