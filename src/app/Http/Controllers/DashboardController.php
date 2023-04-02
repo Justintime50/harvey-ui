@@ -2,32 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Throwable;
 
 class DashboardController extends Controller
 {
-    protected $harveyDomainProtocol;
-    protected $harveyDomain;
-    protected $harveySecret;
-    protected $timeout;
-    protected $harveyPageSize;
-
-    public function __construct()
-    {
-        $this->harveyDomainProtocol = getenv('HARVEY_DOMAIN_PROTOCOL') !== false ? getenv('HARVEY_DOMAIN_PROTOCOL') : 'http';
-        $this->harveyDomain = getenv('HARVEY_DOMAIN');
-        $this->harveySecret = getenv('HARVEY_SECRET') !== false ? getenv('HARVEY_SECRET') : '';
-        $this->timeout = getenv('HARVEY_TIMEOUT') !== false ? getenv('HARVEY_TIMEOUT') : 10;
-        $this->harveyPageSize = getenv('HARVEY_PAGE_SIZE') !== false ? getenv('HARVEY_PAGE_SIZE') : 20;
-    }
-
     /**
-     * Get the list of projects from Harvey.
+     * Show the dashboard view, aggregate projects, deployments, and lock data.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param Request $request
+     * @return View
      */
-    public function dashboard()
+    public function dashboard(Request $request): View
     {
         try {
             $harveyHealthResponse = Http::withBasicAuth($this->harveySecret, '')
@@ -70,134 +58,5 @@ class DashboardController extends Controller
         }
 
         return view('index', compact('harveyStatus', 'projects', 'deployments', 'locks', 'projectsCount', 'deploymentsCount'));
-    }
-
-    /**
-     * Gets the log details of a single deployment.
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function showDeployment(string $id)
-    {
-        try {
-            $response = Http::withBasicAuth($this->harveySecret, '')
-                ->timeout($this->timeout)
-                ->get("$this->harveyDomainProtocol://$this->harveyDomain/deployments/$id");
-            $deployment = $response->successful() ? $response->json() : null;
-        } catch (Throwable $error) {
-            $deployment = null;
-        }
-
-        return view('deployment', compact('deployment'));
-    }
-
-    /**
-     * Gets all the deployments for a project.
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function showProject(string $project)
-    {
-        try {
-            $lockResponse = Http::withBasicAuth($this->harveySecret, '')
-                ->timeout($this->timeout)
-                ->get("$this->harveyDomainProtocol://$this->harveyDomain/locks/$project");
-            $locked = $lockResponse->successful() ? $lockResponse->json()['locked'] : null;
-        } catch (Throwable $error) {
-            $locked = null;
-        }
-
-        try {
-            $projectResponse = Http::withBasicAuth($this->harveySecret, '')
-                ->timeout($this->timeout)
-                ->get("$this->harveyDomainProtocol://$this->harveyDomain/deployments?project=$project"); // TODO: Add page_size url param here
-            $deployments = $projectResponse->successful() ? $projectResponse->json()['deployments'] : null;
-            $deploymentsCount = $projectResponse->successful() ? $projectResponse->json()['total_count'] : 0;
-        } catch (Throwable $error) {
-            $deployments = null;
-        }
-
-        try {
-            $webhookResponse = Http::withBasicAuth($this->harveySecret, '')
-                ->timeout($this->timeout)
-                ->get("$this->harveyDomainProtocol://$this->harveyDomain/projects/$project/webhook");
-            $webhook = $webhookResponse->successful() ? $webhookResponse->json() : null;
-        } catch (Throwable $error) {
-            $webhook = null;
-        }
-
-        return view('project', compact('project', 'locked', 'deployments', 'deploymentsCount', 'webhook'));
-    }
-
-    /**
-     * Unlocks a project's deployments.
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function unlockProject(string $project)
-    {
-        try {
-            $response = Http::withBasicAuth($this->harveySecret, '')
-                ->timeout($this->timeout)
-                ->put("$this->harveyDomainProtocol://$this->harveyDomain/projects/$project/unlock");
-
-            $flashType = $response->successful() ? 'message' : 'error';
-            $flashMessage = $response->successful() ? 'Project unlocked successfully!' : json_encode($response->json());
-        } catch (Throwable $error) {
-            $flashType = 'error';
-            $flashMessage = "Sorry, there was a problem unlocking the project: $error";
-        }
-
-        $flashType = $response->successful() ? 'message' : 'error';
-        $flashMessage = $response->successful() ? 'Project unlocked successfully!' : json_encode($response->json());
-
-        session()->flash($flashType, $flashMessage);
-        return redirect()->back();
-    }
-
-    /**
-     * Locks a project's deployments.
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function lockProject(string $project)
-    {
-        try {
-            $response = Http::withBasicAuth($this->harveySecret, '')
-                ->timeout($this->timeout)
-                ->put("$this->harveyDomainProtocol://$this->harveyDomain/projects/$project/lock");
-
-            $flashType = $response->successful() ? 'message' : 'error';
-            $flashMessage = $response->successful() ? 'Project locked successfully!' : json_encode($response->json());
-        } catch (Throwable $error) {
-            $flashType = 'error';
-            $flashMessage = "Sorry, there was a problem locking the project: $error";
-        }
-
-        session()->flash($flashType, $flashMessage);
-        return redirect()->back();
-    }
-
-    /**
-     * Redeploys a project.
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function redeployProject(string $project)
-    {
-        try {
-            $response = Http::withBasicAuth($this->harveySecret, '')
-                ->timeout($this->timeout)
-                ->post("$this->harveyDomainProtocol://$this->harveyDomain/projects/$project/redeploy");
-
-            $flashType = $response->successful() ? 'message' : 'error';
-            $flashMessage = $response->successful() ? 'Project redeploy started!' : json_encode($response->json());
-        } catch (Throwable $error) {
-            $flashType = 'error';
-            $flashMessage = "Sorry, there was a problem redeploying the project: $error";
-        }
-
-        session()->flash($flashType, $flashMessage);
-        return redirect()->back();
     }
 }

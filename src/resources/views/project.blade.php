@@ -61,7 +61,7 @@
                                         <tr>
                                             <td>
                                                 <a
-                                                    href="deployments/{{ $deployment['project'] }}-{{ $deployment['commit'] }}">{{ $deployment['commit'] }}</a>
+                                                    href="/deployments/{{ $deployment['project'] }}-{{ $deployment['commit'] }}">{{ $deployment['commit'] }}</a>
                                             </td>
                                             <td>{{ count($deployment['attempts']) }}</td>
                                             <td>{{ $deployment['timestamp'] }}</td>

@@ -27,13 +27,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/', 'DashboardController@dashboard')->name('dashboard');
 
     // Projects
-    Route::get('/projects/{project}', 'DashboardController@showProject');
-    Route::post('/projects/{project}/redeploy', 'DashboardController@redeployProject');
-    Route::post('/projects/{project}/unlock', 'DashboardController@unlockProject');
-    Route::post('/projects/{project}/lock', 'DashboardController@lockProject');
+    Route::get('/projects/{project}', 'ProjectController@showProject');
+    Route::post('/projects/{project}/redeploy', 'ProjectController@redeployProject');
+    Route::post('/projects/{project}/unlock', 'ProjectController@unlockProject');
+    Route::post('/projects/{project}/lock', 'ProjectController@lockProject');
 
     // Deployments
-    Route::get('/deployments/{id}', 'DashboardController@showDeployment')->name('deployment');
+    Route::get('/deployments/{id}', 'DeploymentController@showDeployment');
 
     // Users
     Route::get('/users/{id}', 'UserController@showProfile');
