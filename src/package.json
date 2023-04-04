@@ -10,7 +10,7 @@
         "@popperjs/core": "^2.11.6",
         "axios": "^1.1.2",
         "bootstrap": "^5.2.3",
-        "justintime50-styles": "0.2.0",
+        "justintime50-styles": "0.3.0",
         "laravel-vite-plugin": "^0.7.3",
         "postcss": "^8.1.14",
         "postcss-scss": "^4.0.4",

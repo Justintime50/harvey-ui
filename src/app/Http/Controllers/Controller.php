@@ -21,7 +21,8 @@ class Controller extends BaseController
 
     public function __construct()
     {
-        $this->harveyDomainProtocol = getenv('HARVEY_DOMAIN_PROTOCOL') !== false ? getenv('HARVEY_DOMAIN_PROTOCOL') : 'http';
+        $this->harveyDomainProtocol = getenv('HARVEY_DOMAIN_PROTOCOL') !== false
+            ? getenv('HARVEY_DOMAIN_PROTOCOL') : 'http';
         $this->harveyDomain = getenv('HARVEY_DOMAIN');
         $this->harveySecret = getenv('HARVEY_SECRET') !== false ? getenv('HARVEY_SECRET') : '';
         $this->timeout = getenv('HARVEY_TIMEOUT') !== false ? getenv('HARVEY_TIMEOUT') : 10;
