@@ -57,6 +57,13 @@ class DashboardController extends Controller
             $threads = [];
         }
 
-        return view('index', compact('projects', 'deployments', 'locks', 'projectsCount', 'deploymentsCount', 'threads'));
+        return view('index', compact(
+            'projects',
+            'deployments',
+            'locks',
+            'projectsCount',
+            'deploymentsCount',
+            'threads'
+        ));
     }
 }
