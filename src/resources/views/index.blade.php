@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-6 mt-3 mb-3">
+            <div class="col-lg-6">
                 <div class="card bg-secondary mt-3 text-white">
                     <div class="card-header">
                         Projects
@@ -16,7 +16,6 @@
                                 <table class="table-dark table-striped table">
                                     <thead>
                                         <th>Project</th>
-                                        <th>Status</th>
                                         <th>Locked</th>
                                     </thead>
                                     <tbody>
@@ -25,17 +24,16 @@
                                             <tr>
                                                 <td><a href="projects/{{ $project }}">{{ $project }}</a>
                                                 </td>
-                                                <td>Unknown</td>
-                                                {{-- TODO: Fix the response of locks so it has the project name as the key so we don't need to
-                    iterate like this --}}
                                                 @foreach ($locks as $lock)
                                                     @if ($lock['project'] == $project)
                                                         @php
                                                             $lock_color = $lock['locked'] == false ? 'text-success' : 'text-danger';
                                                             $lock_exists = true;
                                                         @endphp
-                                                        <td class="{{ $lock_color }}">{{ var_export($lock['locked']) }}
+                                                        <td class="{{ $lock_color }}">
+                                                            {{ var_export($lock['locked']) }}
                                                         </td>
+                                                        @php break; @endphp
                                                     @endif
                                                 @endforeach
                                                 @if ($lock_exists !== true)
@@ -70,14 +68,14 @@
                 </div>
             </div>
 
-            <div class="col-lg-6 mt-3 mb-3">
+            <div class="col-lg-6">
                 @if (!empty($deployments))
                     <div class="card bg-secondary mt-3 text-white">
                         <div class="card-header">
                             Deployments
                         </div>
                         <div class="card-body">
-                            <h5>Total: {{ $deploymentsCount }}</h5>
+                            <h5>Total: {{ count($deployments) }}/{{ $deploymentsCount }}</h5>
 
                             <div class="table-responsive">
                                 <table class="table-dark table-striped table">

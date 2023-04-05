@@ -14,23 +14,22 @@
             }
             $lockedAlertMessage = !empty($locked) ? 'Project is locked!' : 'Project is not locked.';
             $lockedAlertClass = $lockedAlertMessage == 'Project is locked!' ? 'alert alert-danger' : 'alert alert-success';
-            $lockButtonEndpoint = $lockedAlertMessage == 'true' ? "/projects/$project/unlock" : "/projects/$project/lock";
+            $lockButtonEndpoint = $lockedAlertMessage == 'Project is locked!' ? "/projects/$project/unlock" : "/projects/$project/lock";
         @endphp
 
         <div class="project-buttons">
             <a href="/"><button class="btn btn-primary">Back to Dashboard</button></a>
-            <form action="/projects/{{ $project }}/redeploy" method="post"
-                onsubmit="return confirm('Confirm redeploy?');">
-                @csrf
-                <input name="project" value="{{ $project }}" hidden>
-                <button class="btn btn-warning">Redeploy</button>
-            </form>
             <form action="{{ $lockButtonEndpoint }}" method="post">
                 @csrf
                 <input name="project" value="{{ $project }}" hidden>
                 <button class="btn btn-secondary">{{ $locked == false ? 'Lock' : 'Unlock' }} Deployments</button>
             </form>
-            <button class="btn btn-danger" disabled>Shutdown</button>
+            <form action="/projects/{{ $project }}/redeploy" method="post"
+                onsubmit="return confirm('Confirm redeploy?');">
+                @csrf
+                <input name="project" value="{{ $project }}" hidden>
+                <button class="btn btn-danger">Redeploy</button>
+            </form>
         </div>
 
         <div class="card bg-secondary text-white">
@@ -39,7 +38,7 @@
             </div>
             <div class="card-body">
                 <div class="{{ $lockedAlertClass }}">{{ $lockedAlertMessage }}</div>
-                <h5>Total: {{ $deploymentsCount }}</h5>
+                <h5>Total: {{ count($deployments) }}/{{ $deploymentsCount }}</h5>
                 @if ($deployments != [])
                     <div class="table-responsive">
                         <table class="table-dark table-striped table">
@@ -100,7 +99,7 @@
                         data-bs-parent="#accordion">
                         <div class="accordion-body text-white">
                             @if (isset($webhook))
-                                @json($webhook)
+                                <pre>{{ json_encode($webhook, JSON_PRETTY_PRINT) }}</pre>
                             @else
                                 NA
                             @endif

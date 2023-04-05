@@ -31,8 +31,7 @@ class ProjectController extends Controller
         try {
             $projectResponse = Http::withBasicAuth($this->harveySecret, '')
                 ->timeout($this->timeout)
-                // TODO: Add page_size url param here
-                ->get("$this->harveyDomainProtocol://$this->harveyDomain/deployments?project=$project");
+                ->get("$this->harveyDomainProtocol://$this->harveyDomain/deployments?project=$project&page_size=$this->harveyPageSize");
             $deployments = $projectResponse->successful() ? $projectResponse->json()['deployments'] : null;
             $deploymentsCount = $projectResponse->successful() ? $projectResponse->json()['total_count'] : 0;
         } catch (Throwable $error) {

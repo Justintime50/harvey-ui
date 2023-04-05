@@ -12,6 +12,7 @@
                 <ul>
                     <li>Project: {{ $deployment['project'] }}</li>
                     <li>Commit: {{ $deployment['commit'] ?? '' }}</li>
+                    <li>Attempts: {{ count($deployment['attempts']) }}</li>
                     <li>Timestamp: {{ $deployment['timestamp'] ?? '' }}</li>
                 </ul>
 
