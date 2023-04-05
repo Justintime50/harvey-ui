@@ -4,14 +4,14 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-6 mt-3 mb-3">
-                <div class="card bg-secondary text-white">
+                <div class="card bg-secondary mt-3 text-white">
                     <div class="card-header">
                         Projects
                     </div>
                     <div class="card-body">
                         <h5>Total: {{ $projectsCount }}</h5>
 
-                        @if ($projects != [])
+                        @if (!empty($projects))
                             <div class="table-responsive">
                                 <table class="table-dark table-striped table">
                                     <thead>
@@ -51,11 +51,28 @@
                         @endif
                     </div>
                 </div>
+
+                <div class="card bg-secondary mt-3 text-white">
+                    <div class="card-header">
+                        Threads (Ongoing Work)
+                    </div>
+                    <div class="card-body">
+                        @if (!empty($threads))
+                            <ul>
+                                @foreach ($threads as $thread)
+                                    <li>{{ $thread }}</li>
+                                @endforeach
+                            </ul>
+                        @else
+                            <p>There are no threads at this time.</p>
+                        @endif
+                    </div>
+                </div>
             </div>
 
             <div class="col-lg-6 mt-3 mb-3">
-                @if ($deployments != [])
-                    <div class="card bg-secondary text-white">
+                @if (!empty($deployments))
+                    <div class="card bg-secondary mt-3 text-white">
                         <div class="card-header">
                             Deployments
                         </div>

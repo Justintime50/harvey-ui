@@ -48,6 +48,15 @@ class DashboardController extends Controller
             $locks = [];
         }
 
-        return view('index', compact('projects', 'deployments', 'locks', 'projectsCount', 'deploymentsCount'));
+        try {
+            $threadsResponse = Http::withBasicAuth($this->harveySecret, '')
+                ->timeout($this->timeout)
+                ->get("$this->harveyDomainProtocol://$this->harveyDomain/threads");
+            $threads = $threadsResponse->successful() ? $threadsResponse->json()['threads'] : [];
+        } catch (Throwable $error) {
+            $threads = [];
+        }
+
+        return view('index', compact('projects', 'deployments', 'locks', 'projectsCount', 'deploymentsCount', 'threads'));
     }
 }
