@@ -3,6 +3,7 @@
 ## Next Release
 
 - Adds the ability to redeploy a project with the click of a button
+- Adds `runtime` to deployments
 - Various tweaks to the UI for a more usable and appealing experience
 - Fixes all routes to follow REST conventions
 

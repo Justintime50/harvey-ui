@@ -46,6 +46,7 @@
                                 <th>Commit</th>
                                 <th>Attempts</th>
                                 <th>Timestamp</th>
+                                <th>Runtime</th>
                                 <th>Status</th>
                             </thead>
                             <tbody>
@@ -65,6 +66,7 @@
                                             </td>
                                             <td>{{ count($deployment['attempts']) }}</td>
                                             <td>{{ $deployment['timestamp'] }}</td>
+                                            <td>{{ $deployment['runtime'] ?? '' }}</td>
                                             <td class="{{ $statusColor }}">
                                                 {{ $deployment['attempts'][0]['status'] }}
                                             </td>
