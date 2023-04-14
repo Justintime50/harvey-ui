@@ -17,11 +17,6 @@
                 </ul>
 
                 @if (array_key_exists('attempts', $deployment))
-                    @php
-                        usort($deployment['attempts'], function ($item1, $item2) {
-                            return $item2['timestamp'] <=> $item1['timestamp'];
-                        });
-                    @endphp
                     <div class="accordion" id="accordion">
                         @foreach ($deployment['attempts'] as $attempt)
                             @php $statusColor = $attempt['status'] == 'Success' ? 'text-success' : ($attempt['status'] == 'In-Progress' ? 'text-info' : 'text-danger'); @endphp

@@ -53,10 +53,6 @@
                                 @foreach ($deployments as $deployment)
                                     @if (array_key_exists('attempts', $deployment))
                                         @php
-                                            usort($deployment['attempts'], function ($item1, $item2) {
-                                                // By returning results in a descending order, the most recent attempt will be the 0 index
-                                                return $item2['timestamp'] <=> $item1['timestamp']; // Descending
-                                            });
                                             $statusColor = $deployment['attempts'][0]['status'] == 'Success' ? 'text-success' : ($deployment['attempts'][0]['status'] == 'In-Progress' ? 'text-info' : 'text-danger');
                                         @endphp
                                         <tr>
