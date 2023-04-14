@@ -14,7 +14,6 @@
                     <li>Commit: {{ $deployment['commit'] ?? '' }}</li>
                     <li>Attempts: {{ count($deployment['attempts']) }}</li>
                     <li>Timestamp: {{ $deployment['timestamp'] ?? '' }}</li>
-                    <li>Runtime: {{ $deployment['runtime'] ?? '' }}</li>
                 </ul>
 
                 @if (array_key_exists('attempts', $deployment))
