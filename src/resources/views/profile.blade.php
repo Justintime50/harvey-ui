@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
         <h1>Profile</h1>
 
         <form action="/users/{{ $user->id }}/password" method="POST">
