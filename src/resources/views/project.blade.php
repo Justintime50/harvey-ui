@@ -81,7 +81,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <canvas id="deployRuntimeChart"></canvas>
+                <canvas id="deploy-runtime-chart"></canvas>
 
                 <div class="card bg-secondary mt-3 text-white">
                     <div class="card-header">
@@ -132,7 +132,7 @@
         @endphp
 
         <script type="module">
-            const ctx = document.getElementById('deployRuntimeChart');
+            const ctx = document.getElementById('deploy-runtime-chart');
             const chartData = {!! json_encode($deployRuntimes) !!}
             let deployNum = [];
             for (let i = 1; i <= chartData.length; i++) {
