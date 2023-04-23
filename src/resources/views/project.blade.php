@@ -134,15 +134,21 @@
         <script type="module">
             const ctx = document.getElementById('deploy-runtime-chart');
             const chartData = {!! json_encode($deployRuntimes) !!}
-            let deployNum = [];
-            for (let i = 1; i <= chartData.length; i++) {
-                deployNum += i.toString();
-            }
+            const deployments = {!! json_encode($deployments) !!}
+            let labels = [];
+
+            deployments.every((element, i) => {
+                labels.push(element.timestamp)
+                if (i + 1 == chartData.length) {
+                    return false;
+                }
+                return true;
+            });
 
             new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: deployNum,
+                    labels,
                     datasets: [{
                         label: 'Project Deployment Runtimes',
                         data: chartData,
@@ -157,6 +163,10 @@
                                 display: true,
                                 text: 'Deployments Over Time',
                             },
+                            ticks: {
+                                maxRotation: 75,
+                                minRotation: 75
+                            }
                         },
                         y: {
                             title: {
