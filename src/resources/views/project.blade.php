@@ -124,7 +124,8 @@
                 if (isset($deployment['attempts'])) {
                     foreach ($deployment['attempts'] as $attempt) {
                         if (isset($attempt['runtime'])) {
-                            array_push($deployRuntimes, date('s', strtotime($attempt['runtime'])));
+                            $parse_date = date_parse($attempt['runtime']);
+                            array_push($deployRuntimes, $parse_date['hour'] * 3600 + $parse_date['minute'] * 60 + $parse_date['second']);
                         }
                     }
                 }
