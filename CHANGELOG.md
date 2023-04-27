@@ -4,6 +4,7 @@
 
 - Adds the ability to redeploy a project with the click of a button
 - Adds `runtime` to deployments
+- Adds deployment runtime graphs to each project
 - Various tweaks to the UI for a more usable and appealing experience
 - Fixes all routes to follow REST conventions
 

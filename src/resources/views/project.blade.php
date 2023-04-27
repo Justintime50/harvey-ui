@@ -117,6 +117,7 @@
 
         @php
             $deployRuntimes = [];
+            $deployTimestamps = [];
             usort($deployments, function ($item1, $item2) {
                 return $item1['timestamp'] <=> $item2['timestamp'];
             });
@@ -125,7 +126,8 @@
                     foreach ($deployment['attempts'] as $attempt) {
                         if (isset($attempt['runtime'])) {
                             $parse_date = date_parse($attempt['runtime']);
-                            array_push($deployRuntimes, $parse_date['hour'] * 3600 + $parse_date['minute'] * 60 + $parse_date['second']);
+                            $deployRuntimes[] = $parse_date['hour'] * 3600 + $parse_date['minute'] * 60 + $parse_date['second'];
+                            $deployTimestamps[] = $deployment['timestamp'];
                         }
                     }
                 }
@@ -134,22 +136,13 @@
 
         <script type="module">
             const ctx = document.getElementById('deploy-runtime-chart');
-            const chartData = {!! json_encode($deployRuntimes) !!}
-            const deployments = {!! json_encode($deployments) !!}
-            let labels = [];
-
-            deployments.every((element, i) => {
-                labels.push(element.timestamp)
-                if (i + 1 == chartData.length) {
-                    return false;
-                }
-                return true;
-            });
+            const chartData = {!! json_encode($deployRuntimes) !!};
+            const timestamps = {!! json_encode($deployTimestamps) !!};
 
             new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels,
+                    labels: timestamps,
                     datasets: [{
                         label: 'Project Deployment Runtimes',
                         data: chartData,
