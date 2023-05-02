@@ -1,46 +1,10 @@
-// Elements
-
-body {
-  color: #fff;
-  background-color: #212529;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  color: #fff;
-}
-
-h1 {
-  font-size: 7vmin;
-}
-
-h4 {
-  line-height: 1.375em;
-  font-weight: 400;
-  margin-bottom: 30px;
-}
-
-a,
-a:focus,
-a:active,
-a:visited {
-  text-decoration: none;
-}
-
-// Overrides
-
 .container {
   padding: 40px 20px;
 }
 
 .navbar-brand,
 .nav-link {
-  color: #fff !important;
+  color: $color-white !important;
 }
 
 .accordion-button::after {
@@ -61,19 +25,4 @@ a:visited {
 
 .navbar-toggler:focus {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
-}
-
-// Custom
-
-.project-buttons {
-  display: flex;
-  margin-bottom: 20px;
-
-  button {
-    margin: 5px;
-  }
-}
-
-#deploy-runtime-chart {
-  padding: 10px;
 }

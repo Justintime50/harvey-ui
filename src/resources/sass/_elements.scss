@@ -1,0 +1,35 @@
+@import "variables";
+
+body {
+  color: $color-white;
+  background-color: $color-black;
+  font: 0.9rem Helvetica, sans-serif;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: $color-white;
+}
+
+h1 {
+  font-size: 7vmin;
+}
+
+h4 {
+  line-height: 1.375em;
+  font-weight: 400;
+  margin-bottom: 30px;
+}
+
+a,
+a:focus,
+a:active,
+a:visited {
+  text-decoration: none;
+}

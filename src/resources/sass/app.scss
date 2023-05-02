@@ -1,11 +1,7 @@
-// Fonts
-@import "https://fonts.bunny.net/css?family=Nunito";
-
-// Variables
-@import "variables";
-
-// Bootstrap
+// External
 @import "bootstrap/scss/bootstrap";
 
 // Internal
-@import "stylesheet";
+@import "elements";
+@import "overrides";
+@import "custom";
