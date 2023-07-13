@@ -26,5 +26,6 @@ volumes:
 networks:
   traefik:
     name: traefik
+    external: true
   harvey-ui:
     name: harvey-ui
