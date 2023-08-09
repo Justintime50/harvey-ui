@@ -1,6 +1,6 @@
 services:
   harvey-ui:
     labels:
-      - "traefik.http.routers.harvey-ui.rule=Host(`harvey.localhost`)"
+      - 'traefik.http.routers.harvey-ui.rule=Host(`harvey.localhost`)'
     volumes:
       - ./src:/var/www/html

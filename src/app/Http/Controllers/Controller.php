@@ -21,11 +21,10 @@ class Controller extends BaseController
 
     public function __construct()
     {
-        $this->harveyDomainProtocol = getenv('HARVEY_DOMAIN_PROTOCOL') !== false
-            ? getenv('HARVEY_DOMAIN_PROTOCOL') : 'http';
-        $this->harveyDomain = getenv('HARVEY_DOMAIN');
-        $this->harveySecret = getenv('HARVEY_SECRET') !== false ? getenv('HARVEY_SECRET') : '';
-        $this->timeout = getenv('HARVEY_TIMEOUT') !== false ? getenv('HARVEY_TIMEOUT') : 10;
-        $this->harveyPageSize = getenv('HARVEY_PAGE_SIZE') !== false ? getenv('HARVEY_PAGE_SIZE') : 20;
+        $this->harveyDomainProtocol = config('harvey.domain_protocol');
+        $this->harveyDomain = config('harvey.domain');
+        $this->harveySecret = config('harvey.secret');
+        $this->timeout = config('harvey.timeout');
+        $this->harveyPageSize = config('harvey.page_size');
     }
 }
