@@ -35,7 +35,7 @@ class DashboardControllerTest extends TestCase
         CassetteSetup::setupCassette('dashboard/show.yml', self::$expireCassetteDays);
         $controller = new DashboardController();
 
-        $request = Request::create("/dashboard", 'GET');
+        $request = Request::create('/dashboard', 'GET');
         $response = $controller->showDashboard($request);
 
         $viewData = $response->getData();
