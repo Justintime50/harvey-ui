@@ -1,0 +1,60 @@
+
+-
+    request:
+        method: GET
+        url: 'https://harveyapi.justinpaulhammond.com/deployments/justintime50-justinpaulhammond-62c98a8498192f0c886a759d82701ac3d5412fac'
+        headers:
+            Host: harveyapi.justinpaulhammond.com
+            Accept-Encoding: ''
+            User-Agent: ''
+            Authorization: ''
+            Accept: ''
+    response:
+        status:
+            code: 200
+            message: OK
+        headers:
+            Content-Length: '16204'
+            Content-Type: application/json
+            Date: 'Sat, 02 Sep 2023 02:42:11 GMT'
+            Server: nginx/1.25.2
+        body: '{"attempts":[{"attempt":3,"log":"<REDACTED>","runtime":"0:00:26.500977","status":"Success","timestamp":"2023-09-01 22:54:24.763852+00:00"},{"attempt":2,"log":"<REDACTED>","runtime":"0:00:26.145865","status":"Success","timestamp":"2023-09-01 21:40:09.017949+00:00"},{"attempt":1,"log":"<REDACTED>","runtime":"0:00:26.950927","status":"Success","timestamp":"2023-08-15 02:10:23.540055+00:00"}],"commit":"<REDACTED>","project":"justintime50-justinpaulhammond","timestamp":"2023-09-01 22:54:24.763852+00:00"}'
+        curl_info:
+            url: 'https://harveyapi.justinpaulhammond.com/deployments/justintime50-justinpaulhammond-62c98a8498192f0c886a759d82701ac3d5412fac'
+            content_type: application/json
+            http_code: 200
+            header_size: 133
+            request_size: 213
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.08588
+            namelookup_time: 0.00212
+            connect_time: 0.003015
+            pretransfer_time: 0.04504
+            size_upload: 0.0
+            size_download: 16204.0
+            speed_download: 188681.0
+            speed_upload: 0.0
+            download_content_length: 16204.0
+            upload_content_length: 0.0
+            starttransfer_time: 0.085566
+            redirect_time: 0.0
+            redirect_url: ''
+            primary_ip: 208.54.231.39
+            certinfo: {  }
+            primary_port: 443
+            local_ip: 192.168.1.201
+            local_port: 54707
+            http_version: 2
+            protocol: 2
+            ssl_verifyresult: 0
+            scheme: HTTPS
+            appconnect_time_us: 44981
+            connect_time_us: 3015
+            namelookup_time_us: 2120
+            pretransfer_time_us: 45040
+            redirect_time_us: 0
+            starttransfer_time_us: 85566
+            total_time_us: 85880
+    index: 0

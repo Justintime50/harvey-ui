@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Http;
 
 class Controller extends BaseController
 {
@@ -26,5 +27,12 @@ class Controller extends BaseController
         $this->harveySecret = config('harvey.secret');
         $this->timeout = config('harvey.timeout');
         $this->harveyPageSize = config('harvey.page_size');
+    }
+
+    public function harveyGetRequest(string $url)
+    {
+        return Http::withBasicAuth($this->harveySecret, '')
+            ->timeout($this->timeout)
+            ->get($url);
     }
 }

@@ -24,7 +24,8 @@ Auth::routes([
 
 Route::middleware('auth')->group(function () {
     // General
-    Route::get('/', 'DashboardController@dashboard')->name('dashboard');
+    Route::get('/', 'DashboardController@showDashboard');
+    Route::get('/dashboard', 'DashboardController@showDashboard');
 
     // Projects
     Route::get('/projects/{project}', 'ProjectController@showProject');

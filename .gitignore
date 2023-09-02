@@ -16,3 +16,7 @@ vendor
 # Laravel
 src/storage/images/
 bin
+
+# Coverage
+clover.html
+clover.xml

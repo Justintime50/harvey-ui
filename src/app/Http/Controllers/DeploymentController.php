@@ -19,9 +19,7 @@ class DeploymentController extends Controller
     public function showDeployment(Request $request, string $id): View
     {
         try {
-            $response = Http::withBasicAuth($this->harveySecret, '')
-                ->timeout($this->timeout)
-                ->get("$this->harveyDomainProtocol://$this->harveyDomain/deployments/$id");
+            $response = $this->harveyGetRequest("$this->harveyDomainProtocol://$this->harveyDomain/deployments/$id");
             $deployment = $response->successful() ? $response->json() : null;
         } catch (Throwable $error) {
             $deployment = null;
