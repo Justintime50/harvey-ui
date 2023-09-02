@@ -7,8 +7,16 @@
                 Deployment
             </div>
             <div class="card-body">
-                <a href="/projects/{{ $deployment['project'] }}"><button class="btn btn-primary mt-2 mb-3">Back to
-                        Project</button></a>
+                <div class="project-buttons">
+                    <a href="/projects/{{ $deployment['project'] }}"><button class="btn btn-primary">Back to
+                            Project</button></a>
+                    <form action="/projects/{{ $deployment['project'] }}/redeploy" method="post"
+                        onsubmit="return confirm('Confirm redeploy?');">
+                        @csrf
+                        <input name="project" value="{{ $deployment['project'] }}" hidden>
+                        <button class="btn btn-danger">Redeploy</button>
+                    </form>
+                </div>
                 <ul>
                     <li>Project: {{ $deployment['project'] }}</li>
                     <li>Commit: {{ $deployment['commit'] ?? '' }}</li>

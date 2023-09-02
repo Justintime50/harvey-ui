@@ -2,16 +2,17 @@
 
 # Harvey UI
 
-The UI for the the lightweight Docker Compose deployment platform - Harvey.
+The UI for Harvey, the lightweight Docker Compose deployment runner.
 
 [![Build](https://github.com/Justintime50/harvey-ui/workflows/build/badge.svg)](https://github.com/Justintime50/harvey-ui/actions)
+[![Version](https://img.shields.io/github/v/tag/justintime50/harvey-ui)](https://github.com/justintime50/harvey-ui/releases)
 [![Licence](https://img.shields.io/github/license/justintime50/harvey-ui)](LICENSE)
 
-<img src="https://raw.githubusercontent.com/justintime50/assets/main/src/harvey/showcase.png" alt="Showcase">
+<img src="https://raw.githubusercontent.com/justintime50/assets/main/src/harvey-ui/showcase.png" alt="Showcase">
 
 </div>
 
-Harvey is the lightweight Docker Compose deployment platform. The API and backend can be found here: <https://github.com/Justintime50/harvey>.
+[Harvey](https://github.com/Justintime50/harvey) is the lightweight Docker Compose deployment runner. This project serves as a UI on top of the underlying API and service. View your deployment statuses, logs, and runtime history. Lock and unlock deployments as well as redeploying a project with the click of a button.
 
 ## Install
 
@@ -38,7 +39,7 @@ just setup
 
 ## Usage
 
-Visit `harvey-ui.localhost` in a browser to get started.
+Visit `harvey.localhost` in a browser to get started.
 
 ### Default Login
 

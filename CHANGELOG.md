@@ -1,12 +1,13 @@
 # CHANGELOG
 
-## Next Release
+## v1.0.0 (2023-09-01)
 
 - Adds the ability to redeploy a project with the click of a button
 - Adds `runtime` to deployments
 - Adds deployment runtime graphs to each project
 - Various tweaks to the UI for a more usable and appealing experience
-- Fixes all routes to follow REST conventions
+- Fixes all routes to follow RESTful conventions
+- Adds test suite
 
 ## v0.4.0 (2023-03-31)
 
