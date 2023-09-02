@@ -1,0 +1,125 @@
+
+-
+    request:
+        method: PUT
+        url: 'https://harveyapi.justinpaulhammond.com/projects/justintime50-justinpaulhammond/lock'
+        headers:
+            Host: harveyapi.justinpaulhammond.com
+            Expect: ''
+            Accept-Encoding: ''
+            User-Agent: ''
+            Content-Type: application/json
+            Authorization: ''
+            Accept: ''
+        body: '[]'
+    response:
+        status:
+            code: 200
+            message: OK
+        headers:
+            Content-Length: '16'
+            Content-Type: application/json
+            Date: 'Sat, 02 Sep 2023 04:22:32 GMT'
+            Server: nginx/1.25.2
+        body: '{"locked":true}'
+        curl_info:
+            url: 'https://harveyapi.justinpaulhammond.com/projects/justintime50-justinpaulhammond/lock'
+            content_type: application/json
+            http_code: 200
+            header_size: 130
+            request_size: 227
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.055687
+            namelookup_time: 0.001802
+            connect_time: 0.002792
+            pretransfer_time: 0.04402
+            size_upload: 2.0
+            size_download: 16.0
+            speed_download: 287.0
+            speed_upload: 35.0
+            download_content_length: 16.0
+            upload_content_length: 2.0
+            starttransfer_time: 0.055651
+            redirect_time: 0.0
+            redirect_url: ''
+            primary_ip: 208.54.231.39
+            certinfo: {  }
+            primary_port: 443
+            local_ip: 192.168.1.201
+            local_port: 55404
+            http_version: 2
+            protocol: 2
+            ssl_verifyresult: 0
+            scheme: HTTPS
+            appconnect_time_us: 43944
+            connect_time_us: 2792
+            namelookup_time_us: 1802
+            pretransfer_time_us: 44020
+            redirect_time_us: 0
+            starttransfer_time_us: 55651
+            total_time_us: 55687
+    index: 0
+-
+    request:
+        method: PUT
+        url: 'https://harveyapi.justinpaulhammond.com/projects/justintime50-justinpaulhammond/unlock'
+        headers:
+            Host: harveyapi.justinpaulhammond.com
+            Expect: ''
+            Accept-Encoding: ''
+            User-Agent: ''
+            Content-Type: application/json
+            Authorization: ''
+            Accept: ''
+        body: '[]'
+    response:
+        status:
+            code: 200
+            message: OK
+        headers:
+            Content-Length: '17'
+            Content-Type: application/json
+            Date: 'Sat, 02 Sep 2023 04:22:32 GMT'
+            Server: nginx/1.25.2
+        body: '{"locked":false}'
+        curl_info:
+            url: 'https://harveyapi.justinpaulhammond.com/projects/justintime50-justinpaulhammond/unlock'
+            content_type: application/json
+            http_code: 200
+            header_size: 130
+            request_size: 229
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.035146
+            namelookup_time: 0.000853
+            connect_time: 0.001974
+            pretransfer_time: 0.02759
+            size_upload: 2.0
+            size_download: 17.0
+            speed_download: 483.0
+            speed_upload: 56.0
+            download_content_length: 17.0
+            upload_content_length: 2.0
+            starttransfer_time: 0.035131
+            redirect_time: 0.0
+            redirect_url: ''
+            primary_ip: 208.54.231.39
+            certinfo: {  }
+            primary_port: 443
+            local_ip: 192.168.1.201
+            local_port: 55405
+            http_version: 2
+            protocol: 2
+            ssl_verifyresult: 0
+            scheme: HTTPS
+            appconnect_time_us: 27537
+            connect_time_us: 1974
+            namelookup_time_us: 853
+            pretransfer_time_us: 27590
+            redirect_time_us: 0
+            starttransfer_time_us: 35131
+            total_time_us: 35146
+    index: 0

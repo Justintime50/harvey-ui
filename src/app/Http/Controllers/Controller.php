@@ -35,4 +35,18 @@ class Controller extends BaseController
             ->timeout($this->timeout)
             ->get($url);
     }
+
+    public function harveyPostRequest(string $url)
+    {
+        return Http::withBasicAuth($this->harveySecret, '')
+            ->timeout($this->timeout)
+            ->post($url);
+    }
+
+    public function harveyPutRequest(string $url)
+    {
+        return Http::withBasicAuth($this->harveySecret, '')
+            ->timeout($this->timeout)
+            ->put($url);
+    }
 }

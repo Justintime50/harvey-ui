@@ -1,0 +1,178 @@
+
+-
+    request:
+        method: GET
+        url: 'https://harveyapi.justinpaulhammond.com/locks/justintime50-justinpaulhammond'
+        headers:
+            Host: harveyapi.justinpaulhammond.com
+            Accept-Encoding: ''
+            User-Agent: ''
+            Authorization: ''
+            Accept: ''
+    response:
+        status:
+            code: 200
+            message: OK
+        headers:
+            Content-Length: '17'
+            Content-Type: application/json
+            Date: 'Sat, 02 Sep 2023 04:10:38 GMT'
+            Server: nginx/1.25.2
+        body: '{"locked":false}'
+        curl_info:
+            url: 'https://harveyapi.justinpaulhammond.com/locks/justintime50-justinpaulhammond'
+            content_type: application/json
+            http_code: 200
+            header_size: 130
+            request_size: 166
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.060097
+            namelookup_time: 0.00128
+            connect_time: 0.002314
+            pretransfer_time: 0.04287
+            size_upload: 0.0
+            size_download: 17.0
+            speed_download: 282.0
+            speed_upload: 0.0
+            download_content_length: 17.0
+            upload_content_length: 0.0
+            starttransfer_time: 0.06008
+            redirect_time: 0.0
+            redirect_url: ''
+            primary_ip: 208.54.231.39
+            certinfo: {  }
+            primary_port: 443
+            local_ip: 192.168.1.201
+            local_port: 55299
+            http_version: 2
+            protocol: 2
+            ssl_verifyresult: 0
+            scheme: HTTPS
+            appconnect_time_us: 42818
+            connect_time_us: 2314
+            namelookup_time_us: 1280
+            pretransfer_time_us: 42870
+            redirect_time_us: 0
+            starttransfer_time_us: 60080
+            total_time_us: 60097
+    index: 0
+-
+    request:
+        method: GET
+        url: 'https://harveyapi.justinpaulhammond.com/deployments?project=justintime50-justinpaulhammond&page_size=2'
+        headers:
+            Host: harveyapi.justinpaulhammond.com
+            Accept-Encoding: ''
+            User-Agent: ''
+            Authorization: ''
+            Accept: ''
+    response:
+        status:
+            code: 200
+            message: OK
+        headers:
+            Content-Length: '21585'
+            Content-Type: application/json
+            Date: 'Sat, 02 Sep 2023 04:10:38 GMT'
+            Server: nginx/1.25.2
+        body: '{"deployments":[{"attempts":[{"attempt":3,"log":"<REDACTED>","runtime":"0:00:26.500977","status":"Success","timestamp":"2023-09-01 22:54:24.763852+00:00"},{"attempt":2,"log":"<REDACTED>","runtime":"0:00:26.145865","status":"Success","timestamp":"2023-09-01 21:40:09.017949+00:00"},{"attempt":1,"log":"<REDACTED>","runtime":"0:00:26.950927","status":"Success","timestamp":"2023-08-15 02:10:23.540055+00:00"}],"commit":"<REDACTED>","project":"justintime50-justinpaulhammond","timestamp":"2023-09-01 22:54:24.763852+00:00"},{"attempts":[{"attempt":1,"log":"<REDACTED>","runtime":"0:00:28.176528","status":"Success","timestamp":"2023-08-14 04:49:44.865145+00:00"}],"commit":"<REDACTED>","project":"justintime50-justinpaulhammond","timestamp":"2023-08-14 04:49:44.865145+00:00"}],"total_count":36}'
+        curl_info:
+            url: 'https://harveyapi.justinpaulhammond.com/deployments?project=justintime50-justinpaulhammond&page_size=2'
+            content_type: application/json
+            http_code: 200
+            header_size: 133
+            request_size: 192
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.065025
+            namelookup_time: 0.000727
+            connect_time: 0.001415
+            pretransfer_time: 0.026338
+            size_upload: 0.0
+            size_download: 21585.0
+            speed_download: 331949.0
+            speed_upload: 0.0
+            download_content_length: 21585.0
+            upload_content_length: 0.0
+            starttransfer_time: 0.06422
+            redirect_time: 0.0
+            redirect_url: ''
+            primary_ip: 208.54.231.39
+            certinfo: {  }
+            primary_port: 443
+            local_ip: 192.168.1.201
+            local_port: 55300
+            http_version: 2
+            protocol: 2
+            ssl_verifyresult: 0
+            scheme: HTTPS
+            appconnect_time_us: 26292
+            connect_time_us: 1415
+            namelookup_time_us: 727
+            pretransfer_time_us: 26338
+            redirect_time_us: 0
+            starttransfer_time_us: 64220
+            total_time_us: 65025
+    index: 0
+-
+    request:
+        method: GET
+        url: 'https://harveyapi.justinpaulhammond.com/projects/justintime50-justinpaulhammond/webhook'
+        headers:
+            Host: harveyapi.justinpaulhammond.com
+            Accept-Encoding: ''
+            User-Agent: ''
+            Authorization: ''
+            Accept: ''
+    response:
+        status:
+            code: 200
+            message: OK
+        headers:
+            Content-Length: '8421'
+            Content-Type: application/json
+            Date: 'Sat, 02 Sep 2023 04:10:38 GMT'
+            Server: nginx/1.25.2
+        body: '{"message":[],"success":true}'
+        curl_info:
+            url: 'https://harveyapi.justinpaulhammond.com/projects/justintime50-justinpaulhammond/webhook'
+            content_type: application/json
+            http_code: 200
+            header_size: 132
+            request_size: 177
+            filetime: -1
+            ssl_verify_result: 0
+            redirect_count: 0
+            total_time: 0.036861
+            namelookup_time: 0.000708
+            connect_time: 0.001589
+            pretransfer_time: 0.027241
+            size_upload: 0.0
+            size_download: 8421.0
+            speed_download: 228452.0
+            speed_upload: 0.0
+            download_content_length: 8421.0
+            upload_content_length: 0.0
+            starttransfer_time: 0.036355
+            redirect_time: 0.0
+            redirect_url: ''
+            primary_ip: 208.54.231.39
+            certinfo: {  }
+            primary_port: 443
+            local_ip: 192.168.1.201
+            local_port: 55301
+            http_version: 2
+            protocol: 2
+            ssl_verifyresult: 0
+            scheme: HTTPS
+            appconnect_time_us: 27200
+            connect_time_us: 1589
+            namelookup_time_us: 708
+            pretransfer_time_us: 27241
+            redirect_time_us: 0
+            starttransfer_time_us: 36355
+            total_time_us: 36861
+    index: 0

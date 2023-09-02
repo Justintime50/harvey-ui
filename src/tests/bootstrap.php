@@ -20,7 +20,10 @@ $scrubbedArray = []; // In PHP, this could be either an array or object
 
 define('RESPONSE_BODY_SCRUBBERS', [
     ['commit', $scrubbedString],
+    ['commits', $scrubbedArray],
+    ['email', $scrubbedString],
     ['log', $scrubbedString],
+    ['message', $scrubbedArray]
 ]);
 
 VCRCleaner::enable([
