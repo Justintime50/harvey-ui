@@ -17,7 +17,9 @@ class DashboardController extends Controller
     public function showDashboard(Request $request): View
     {
         try {
-            $projectsResponse = $this->harveyGetRequest("$this->harveyDomainProtocol://$this->harveyDomain/projects?page_size=$this->harveyPageSize");
+            $projectsResponse = $this->harveyGetRequest(
+                "$this->harveyDomainProtocol://$this->harveyDomain/projects?page_size=$this->harveyPageSize"
+            );
             $projects = $projectsResponse->successful() ? $projectsResponse->json()['projects'] : [];
             $projectsCount = $projectsResponse->successful() ? $projectsResponse->json()['total_count'] : 0;
         } catch (Throwable $error) {
@@ -26,7 +28,9 @@ class DashboardController extends Controller
         }
 
         try {
-            $deploymentsResponse = $this->harveyGetRequest("$this->harveyDomainProtocol://$this->harveyDomain/deployments?page_size=$this->harveyPageSize");
+            $deploymentsResponse = $this->harveyGetRequest(
+                "$this->harveyDomainProtocol://$this->harveyDomain/deployments?page_size=$this->harveyPageSize"
+            );
             $deployments = $deploymentsResponse->successful() ? $deploymentsResponse->json()['deployments'] : [];
             $deploymentsCount = $deploymentsResponse->successful() ? $deploymentsResponse->json()['total_count'] : 0;
         } catch (Throwable $error) {
@@ -35,7 +39,9 @@ class DashboardController extends Controller
         }
 
         try {
-            $locksResponse = $this->harveyGetRequest("$this->harveyDomainProtocol://$this->harveyDomain/locks?page_size=$this->harveyPageSize");
+            $locksResponse = $this->harveyGetRequest(
+                "$this->harveyDomainProtocol://$this->harveyDomain/locks?page_size=$this->harveyPageSize"
+            );
             $locks = $locksResponse->successful() ? $locksResponse->json()['locks'] : [];
         } catch (Throwable $error) {
             $locks = [];
