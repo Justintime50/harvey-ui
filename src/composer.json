@@ -19,11 +19,13 @@
         "justintime50/vcr-accessories": "^0.2.1",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^7.0",
-        "php-vcr/php-vcr": "^1.5.5",
         "phpunit/phpunit": "^10",
         "rregeer/phpunit-coverage-check": "^0.3.1",
         "spatie/laravel-ignition": "^2.1",
         "squizlabs/php_codesniffer": "^3.7"
+    },
+    "replace": {
+        "php-vcr/php-vcr": "*"
     },
     "autoload": {
         "psr-4": {
