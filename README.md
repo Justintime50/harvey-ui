@@ -5,6 +5,7 @@
 The UI for Harvey, the lightweight Docker Compose deployment runner.
 
 [![Build](https://github.com/Justintime50/harvey-ui/workflows/build/badge.svg)](https://github.com/Justintime50/harvey-ui/actions)
+[![Coverage Status](https://coveralls.io/repos/github/Justintime50/harvey-ui/badge.svg?branch=main)](https://coveralls.io/github/Justintime50/harvey-ui?branch=main)
 [![Version](https://img.shields.io/github/v/tag/justintime50/harvey-ui)](https://github.com/justintime50/harvey-ui/releases)
 [![Licence](https://img.shields.io/github/license/justintime50/harvey-ui)](LICENSE)
 
