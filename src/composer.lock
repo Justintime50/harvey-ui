@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4143df8ab2147a0441304c9f8219a4e4",
+    "content-hash": "a2a2a02e839c5289a9f700ede9ea34ff",
     "packages": [
         {
             "name": "brick/math",
@@ -7494,22 +7494,22 @@
         },
         {
             "name": "php-vcr/php-vcr",
-            "version": "1.6.5",
+            "version": "1.6.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-vcr/php-vcr.git",
-                "reference": "5c9417b806e5b153e7d12b50ecafe27f45608122"
+                "reference": "7debb44f4efc16ce442f0bd99b8d72e0283122e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-vcr/php-vcr/zipball/5c9417b806e5b153e7d12b50ecafe27f45608122",
-                "reference": "5c9417b806e5b153e7d12b50ecafe27f45608122",
+                "url": "https://api.github.com/repos/php-vcr/php-vcr/zipball/7debb44f4efc16ce442f0bd99b8d72e0283122e4",
+                "reference": "7debb44f4efc16ce442f0bd99b8d72e0283122e4",
                 "shasum": ""
             },
             "require": {
                 "beberlei/assert": "^3.2.5",
                 "ext-curl": "*",
-                "php": "^8,<8.2",
+                "php": "^8,<8.2|>=8.2.9,<8.3",
                 "symfony/event-dispatcher": "^4|^5|^6",
                 "symfony/event-dispatcher-contracts": "^1|^2|^3",
                 "symfony/yaml": "^3|^4|^5|^6"
@@ -7545,9 +7545,9 @@
             "description": "Record your test suite's HTTP interactions and replay them during future test runs for fast, deterministic, accurate tests.",
             "support": {
                 "issues": "https://github.com/php-vcr/php-vcr/issues",
-                "source": "https://github.com/php-vcr/php-vcr/tree/1.6.5"
+                "source": "https://github.com/php-vcr/php-vcr/tree/1.6.7"
             },
-            "time": "2023-02-20T07:54:59+00:00"
+            "time": "2023-09-04T22:44:06+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",

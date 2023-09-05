@@ -23,7 +23,7 @@ define('RESPONSE_BODY_SCRUBBERS', [
     ['commits', $scrubbedArray],
     ['email', $scrubbedString],
     ['log', $scrubbedString],
-    ['message', $scrubbedArray]
+    ['message', $scrubbedArray],
 ]);
 
 VCRCleaner::enable([
