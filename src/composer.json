@@ -19,6 +19,7 @@
         "justintime50/vcr-accessories": "^0.2.1",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^7.0",
+        "php-coveralls/php-coveralls": "^2.5",
         "php-vcr/php-vcr": "1.6.7",
         "phpunit/phpunit": "^10",
         "rregeer/phpunit-coverage-check": "^0.3.1",
