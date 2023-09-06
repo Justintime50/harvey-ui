@@ -35,8 +35,7 @@ class ProjectControllerTest extends TestCase
         CassetteSetup::setupCassette('projects/show.yml', self::$expireCassetteDays);
         $controller = new ProjectController();
 
-        // TODO: Mock out projects instead of using real ones
-        $projectId = 'justintime50-justinpaulhammond';
+        $projectId = self::$testProjectName;
         $request = Request::create("/projects/$projectId", 'GET');
         $response = $controller->showProject($request, $projectId);
 
@@ -59,8 +58,7 @@ class ProjectControllerTest extends TestCase
         CassetteSetup::setupCassette('projects/lockUnlock.yml', self::$expireCassetteDays);
         $controller = new ProjectController();
 
-        // TODO: Mock out projects instead of using real ones
-        $projectId = 'justintime50-justinpaulhammond';
+        $projectId = self::$testProjectName;
 
         $request = Request::create("/projects/$projectId/lock", 'PUT');
         $response = $controller->lockProject($request, $projectId);
@@ -85,8 +83,7 @@ class ProjectControllerTest extends TestCase
         CassetteSetup::setupCassette('projects/redeploy.yml', self::$expireCassetteDays);
         $controller = new ProjectController();
 
-        // TODO: Mock out projects instead of using real ones
-        $projectId = 'justintime50-justinpaulhammond';
+        $projectId = self::$testProjectName;
         $request = Request::create("/projects/$projectId/redeploy", 'POST');
         $response = $controller->redeployProject($request, $projectId);
 

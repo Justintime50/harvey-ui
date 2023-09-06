@@ -30,6 +30,7 @@ VCRCleaner::enable([
     'request' => [
         'ignoreHeaders' => [
             'Authorization',
+            'Host',
             'User-Agent',
         ],
     ],
@@ -43,6 +44,9 @@ VCRCleaner::enable([
                 return json_encode($responseBodyEncoded);
             }
         ],
+        'ignoreHeaders' => [
+            'Date',
+        ]
     ],
 ]);
 

@@ -35,8 +35,7 @@ class DeploymentControllerTest extends TestCase
         CassetteSetup::setupCassette('deployments/show.yml', self::$expireCassetteDays);
         $controller = new DeploymentController();
 
-        // TODO: Mock out deployments instead of using real ones
-        $deploymentId = 'justintime50-justinpaulhammond-62c98a8498192f0c886a759d82701ac3d5412fac';
+        $deploymentId = self::$testProjectName . '-' . self::$testProjectId;
         $request = Request::create("/deployments/$deploymentId", 'GET');
         $response = $controller->showDeployment($request, $deploymentId);
 

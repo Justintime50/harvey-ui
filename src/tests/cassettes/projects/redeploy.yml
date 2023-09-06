@@ -2,9 +2,9 @@
 -
     request:
         method: POST
-        url: 'https://harveyapi.justinpaulhammond.com/projects/justintime50-justinpaulhammond/redeploy'
+        url: 'http://127.0.0.1:5000/projects/justintime50-justinpaulhammond/redeploy'
         headers:
-            Host: harveyapi.justinpaulhammond.com
+            Host: ''
             Expect: ''
             Accept-Encoding: ''
             User-Agent: ''
@@ -17,47 +17,49 @@
             code: 200
             message: OK
         headers:
-            Content-Length: '75'
+            Server: 'Werkzeug/2.3.7 Python/3.11.5'
+            Date: null
             Content-Type: application/json
-            Date: 'Sat, 02 Sep 2023 04:23:39 GMT'
-            Server: nginx/1.25.2
+            Content-Length: '84'
+            Connection: close
         body: '{"message":[],"success":true}'
         curl_info:
-            url: 'https://harveyapi.justinpaulhammond.com/projects/justintime50-justinpaulhammond/redeploy'
+            url: 'http://127.0.0.1:5000/projects/justintime50-justinpaulhammond/redeploy'
             content_type: application/json
             http_code: 200
-            header_size: 130
-            request_size: 232
+            header_size: 165
+            request_size: 195
             filetime: -1
             ssl_verify_result: 0
             redirect_count: 0
-            total_time: 0.061901
-            namelookup_time: 0.001669
-            connect_time: 0.002739
-            pretransfer_time: 0.046444
+            total_time: 0.002361
+            namelookup_time: 0.000128
+            connect_time: 0.000277
+            pretransfer_time: 0.000304
             size_upload: 2.0
-            size_download: 75.0
-            speed_download: 1211.0
-            speed_upload: 32.0
-            download_content_length: 75.0
+            size_download: 84.0
+            speed_download: 35578.0
+            speed_upload: 847.0
+            download_content_length: 84.0
             upload_content_length: 2.0
-            starttransfer_time: 0.061851
+            starttransfer_time: 0.002253
             redirect_time: 0.0
             redirect_url: ''
-            primary_ip: 208.54.231.39
+            primary_ip: 127.0.0.1
             certinfo: {  }
-            primary_port: 443
-            local_ip: 192.168.1.201
-            local_port: 55408
+            primary_port: 5000
+            local_ip: 127.0.0.1
+            local_port: 52387
             http_version: 2
-            protocol: 2
+            protocol: 1
             ssl_verifyresult: 0
-            scheme: HTTPS
-            appconnect_time_us: 46367
-            connect_time_us: 2739
-            namelookup_time_us: 1669
-            pretransfer_time_us: 46444
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 277
+            namelookup_time_us: 128
+            pretransfer_time_us: 304
             redirect_time_us: 0
-            starttransfer_time_us: 61851
-            total_time_us: 61901
+            starttransfer_time_us: 2253
+            total_time_us: 2361
+            effective_method: POST
     index: 0

@@ -2,9 +2,9 @@
 -
     request:
         method: GET
-        url: 'https://harveyapi.justinpaulhammond.com/deployments/justintime50-justinpaulhammond-62c98a8498192f0c886a759d82701ac3d5412fac'
+        url: 'http://127.0.0.1:5000/deployments/justintime50-justinpaulhammond-1'
         headers:
-            Host: harveyapi.justinpaulhammond.com
+            Host: ''
             Accept-Encoding: ''
             User-Agent: ''
             Authorization: ''
@@ -14,47 +14,49 @@
             code: 200
             message: OK
         headers:
-            Content-Length: '16204'
+            Server: 'Werkzeug/2.3.7 Python/3.11.5'
+            Date: null
             Content-Type: application/json
-            Date: 'Sat, 02 Sep 2023 02:42:11 GMT'
-            Server: nginx/1.25.2
-        body: '{"attempts":[{"attempt":3,"log":"<REDACTED>","runtime":"0:00:26.500977","status":"Success","timestamp":"2023-09-01 22:54:24.763852+00:00"},{"attempt":2,"log":"<REDACTED>","runtime":"0:00:26.145865","status":"Success","timestamp":"2023-09-01 21:40:09.017949+00:00"},{"attempt":1,"log":"<REDACTED>","runtime":"0:00:26.950927","status":"Success","timestamp":"2023-08-15 02:10:23.540055+00:00"}],"commit":"<REDACTED>","project":"justintime50-justinpaulhammond","timestamp":"2023-09-01 22:54:24.763852+00:00"}'
+            Content-Length: '23982'
+            Connection: close
+        body: '{"attempts":[{"attempt":12,"log":"<REDACTED>","runtime":"0:00:11.956249","status":"Success","timestamp":"2023-09-06 01:41:30.455103+00:00"},{"attempt":11,"log":"<REDACTED>","runtime":"0:00:12.815453","status":"Success","timestamp":"2023-09-06 01:40:57.560554+00:00"},{"attempt":10,"log":"<REDACTED>","runtime":"0:00:11.872756","status":"Success","timestamp":"2023-09-06 01:35:29.980084+00:00"},{"attempt":9,"log":"<REDACTED>","runtime":"0:00:11.769262","status":"Success","timestamp":"2023-09-06 01:34:53.486000+00:00"},{"attempt":8,"log":"<REDACTED>","runtime":"0:00:01.925490","status":"Success","timestamp":"2023-09-06 01:34:30.267233+00:00"},{"attempt":7,"log":"<REDACTED>","runtime":null,"status":"Failure","timestamp":"2023-09-06 01:29:13.636757+00:00"},{"attempt":6,"log":"<REDACTED>","runtime":null,"status":"In-Progress","timestamp":"2023-09-06 01:28:47.928321+00:00"},{"attempt":5,"log":"<REDACTED>","runtime":null,"status":"Failure","timestamp":"2023-09-06 01:28:23.253259+00:00"},{"attempt":4,"log":"<REDACTED>","runtime":"0:00:12.067224","status":"Success","timestamp":"2023-09-06 01:27:21.043425+00:00"},{"attempt":3,"log":"<REDACTED>","runtime":"0:00:01.780548","status":"Success","timestamp":"2023-09-06 01:26:47.751916+00:00"},{"attempt":2,"log":"<REDACTED>","runtime":null,"status":"Failure","timestamp":"2023-09-06 01:24:43.553859+00:00"},{"attempt":1,"log":"<REDACTED>","runtime":null,"status":"Failure","timestamp":"2023-09-06 01:24:21.258279+00:00"}],"commit":"<REDACTED>","project":"justintime50-justinpaulhammond","timestamp":"2023-09-06 01:41:30.455103+00:00"}'
         curl_info:
-            url: 'https://harveyapi.justinpaulhammond.com/deployments/justintime50-justinpaulhammond-62c98a8498192f0c886a759d82701ac3d5412fac'
+            url: 'http://127.0.0.1:5000/deployments/justintime50-justinpaulhammond-1'
             content_type: application/json
             http_code: 200
-            header_size: 133
-            request_size: 213
+            header_size: 168
+            request_size: 137
             filetime: -1
             ssl_verify_result: 0
             redirect_count: 0
-            total_time: 0.08588
-            namelookup_time: 0.00212
-            connect_time: 0.003015
-            pretransfer_time: 0.04504
+            total_time: 0.003427
+            namelookup_time: 0.000196
+            connect_time: 0.000375
+            pretransfer_time: 0.000406
             size_upload: 0.0
-            size_download: 16204.0
-            speed_download: 188681.0
+            size_download: 23982.0
+            speed_download: 6997957.0
             speed_upload: 0.0
-            download_content_length: 16204.0
+            download_content_length: 23982.0
             upload_content_length: 0.0
-            starttransfer_time: 0.085566
+            starttransfer_time: 0.003392
             redirect_time: 0.0
             redirect_url: ''
-            primary_ip: 208.54.231.39
+            primary_ip: 127.0.0.1
             certinfo: {  }
-            primary_port: 443
-            local_ip: 192.168.1.201
-            local_port: 54707
+            primary_port: 5000
+            local_ip: 127.0.0.1
+            local_port: 52381
             http_version: 2
-            protocol: 2
+            protocol: 1
             ssl_verifyresult: 0
-            scheme: HTTPS
-            appconnect_time_us: 44981
-            connect_time_us: 3015
-            namelookup_time_us: 2120
-            pretransfer_time_us: 45040
+            scheme: HTTP
+            appconnect_time_us: 0
+            connect_time_us: 375
+            namelookup_time_us: 196
+            pretransfer_time_us: 406
             redirect_time_us: 0
-            starttransfer_time_us: 85566
-            total_time_us: 85880
+            starttransfer_time_us: 3392
+            total_time_us: 3427
+            effective_method: GET
     index: 0
