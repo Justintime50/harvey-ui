@@ -39,7 +39,7 @@
         }
     },
     "scripts": {
-        "clean": "rm -rf src/bin src/clover.html src/node_modules src/vendor src/*.cache src/bootstrap/cache/*.php",
+        "clean": "rm -rf bin clover.html node_modules vendor *.cache .*.cache bootstrap/cache/*.php",
         "clean-db": "docker exec -t harvey-ui-harvey-ui-1 php artisan db:wipe",
         "coverage": "XDEBUG_MODE=coverage ./bin/phpunit --coverage-html clover.html --coverage-clover build/logs/clover.xml && bin/coverage-check build/logs/clover.xml 70 --only-percentage",
         "fix": "./bin/phpcbf --standard=./node_modules/justintime50-styles/src/php/phpcs.xml .",
