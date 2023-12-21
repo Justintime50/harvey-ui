@@ -5,13 +5,7 @@ services:
         PROD: true
     deploy:
       replicas: 2
-      resources:
-        limits:
-          cpus: '0.50'
-          memory: '512M'
-        reservations:
-          cpus: '0.25'
-          memory: '128M'
+    mem_limit: '512m'
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost']
       interval: 10s
@@ -24,16 +18,9 @@ services:
     volumes:
       - ./src/storage:/var/www/html/storage
   harvey-ui-db:
-    deploy:
-      resources:
-        limits:
-          cpus: '0.50'
-          memory: '512M'
-        reservations:
-          cpus: '0.25'
-          memory: '128M'
+    mem_limit: '768m'
     healthcheck:
-      test: ['CMD', 'mysql', '-u${MARIADB_USER}', '-p${MARIADB_PASSWORD}', '-e', 'show databases;']
+      test: ['CMD', 'mariadb', '-u${MARIADB_USER}', '-p${MARIADB_PASSWORD}', '-e', 'show databases;']
       interval: 10s
       timeout: 10s
       retries: 3

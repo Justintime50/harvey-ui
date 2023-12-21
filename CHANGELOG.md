@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Next Release
+
+- Upgrades from PHP 8.2 to 8.3
+- Upgrades MariaDB from `10.11` to `11.1.3`
+
 ## v1.0.0 (2023-09-01)
 
 - Adds the ability to redeploy a project with the click of a button
