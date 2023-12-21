@@ -13,7 +13,7 @@ The UI for Harvey, the lightweight Docker Compose deployment runner.
 
 </div>
 
-[Harvey](https://github.com/Justintime50/harvey) is the lightweight Docker Compose deployment runner. This project serves as a UI on top of the underlying API and service. View your deployment statuses, logs, and runtime history. Lock and unlock deployments as well as redeploying a project with the click of a button.
+[Harvey](https://github.com/Justintime50/harvey) is the lightweight Docker Compose deployment runner. This project serves as a UI on top of the underlying API and service. View your deployment statuses, logs, and runtime history. Lock and unlock deployments as well as redeploy a project with the click of a button.
 
 ## Install
 
@@ -29,11 +29,11 @@ just setup
 
 #### Required
 
-- `HARVEY_DOMAIN`
-- `HARVEY_SECRET`
+- `HARVEY_DOMAIN` (eg: example.com)
 
 #### Optional
 
+- `HARVEY_SECRET` (leave blank if not securing your endpoints)
 - `HARVEY_DOMAIN_PROTOCOL` (`http` vs `https` - defaults to `http`)
 - `HARVEY_TIMEOUT` (defaults to `10` seconds)
 - `HARVEY_PAGE_SIZE` (defaults to `20` records)

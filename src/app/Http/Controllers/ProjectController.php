@@ -35,6 +35,7 @@ class ProjectController extends Controller
             $deploymentsCount = $projectResponse->successful() ? $projectResponse->json()['total_count'] : 0;
         } catch (Throwable $error) {
             $deployments = null;
+            $deploymentsCount = 0;
         }
 
         try {
