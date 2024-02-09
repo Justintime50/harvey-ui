@@ -8,19 +8,27 @@ services:
     mem_limit: '512m'
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost']
-      interval: 10s
+      start_period: 10s
+      start_interval: 1s
+      interval: 30s
       timeout: 10s
       retries: 3
     labels:
       - 'traefik.http.routers.harvey-ui.rule=Host(`harvey.justinpaulhammond.com`, `www.harvey.justinpaulhammond.com`)'
       - 'traefik.http.routers.harvey-ui.tls=true'
       - 'traefik.http.routers.harvey-ui.tls.certresolver=letsencrypt'
+    depends_on:
+      harvey-ui-db:
+        condition: service_healthy
     volumes:
       - ./src/storage:/var/www/html/storage
   harvey-ui-db:
     mem_limit: '768m'
     healthcheck:
       test: ['CMD', 'mariadb', '-u${MARIADB_USER}', '-p${MARIADB_PASSWORD}', '-e', 'show databases;']
-      interval: 10s
+      # Need to account for upgrade times at startup
+      start_period: 30s
+      start_interval: 1s
+      interval: 30s
       timeout: 10s
       retries: 3
