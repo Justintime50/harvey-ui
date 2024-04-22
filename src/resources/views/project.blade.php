@@ -13,8 +13,10 @@
                 $lockedAlertMessage = 'Unknown';
             }
             $lockedAlertMessage = !empty($locked) ? 'Project is locked!' : 'Project is not locked.';
-            $lockedAlertClass = $lockedAlertMessage == 'Project is locked!' ? 'alert alert-danger' : 'alert alert-success';
-            $lockButtonEndpoint = $lockedAlertMessage == 'Project is locked!' ? "/projects/$project/unlock" : "/projects/$project/lock";
+            $lockedAlertClass =
+                $lockedAlertMessage == 'Project is locked!' ? 'alert alert-danger' : 'alert alert-success';
+            $lockButtonEndpoint =
+                $lockedAlertMessage == 'Project is locked!' ? "/projects/$project/unlock" : "/projects/$project/lock";
         @endphp
 
         <div class="project-buttons">
@@ -45,19 +47,25 @@
                             <div class="table-responsive">
                                 <table class="table-dark table-striped table">
                                     <thead>
+                                        <th>Status</th>
                                         <th>Commit</th>
                                         <th>Attempts</th>
                                         <th>Timestamp</th>
                                         <th>Runtime</th>
-                                        <th>Status</th>
                                     </thead>
                                     <tbody>
                                         @foreach ($deployments as $deployment)
                                             @if (array_key_exists('attempts', $deployment))
                                                 @php
-                                                    $statusColor = $deployment['attempts'][0]['status'] == 'Success' ? 'text-success' : ($deployment['attempts'][0]['status'] == 'In-Progress' ? 'text-info' : 'text-danger');
+                                                    $status =
+                                                        $deployment['attempts'][0]['status'] == 'Success'
+                                                            ? '✅'
+                                                            : ($deployment['attempts'][0]['status'] == 'In-Progress'
+                                                                ? '🚀'
+                                                                : '❌');
                                                 @endphp
                                                 <tr>
+                                                    <td>{{ $status }}</td>
                                                     <td>
                                                         <a
                                                             href="/deployments/{{ $deployment['project'] }}-{{ $deployment['commit'] }}">{{ $deployment['commit'] }}</a>
@@ -65,9 +73,6 @@
                                                     <td>{{ count($deployment['attempts']) }}</td>
                                                     <td>{{ $deployment['timestamp'] }}</td>
                                                     <td>{{ $deployment['attempts'][0]['runtime'] ?? '' }}</td>
-                                                    <td class="{{ $statusColor }}">
-                                                        {{ $deployment['attempts'][0]['status'] }}
-                                                    </td>
                                                 </tr>
                                             @endif
                                         @endforeach
@@ -126,7 +131,8 @@
                     foreach ($deployment['attempts'] as $attempt) {
                         if (isset($attempt['runtime'])) {
                             $parse_date = date_parse($attempt['runtime']);
-                            $deployRuntimes[] = $parse_date['hour'] * 3600 + $parse_date['minute'] * 60 + $parse_date['second'];
+                            $deployRuntimes[] =
+                                $parse_date['hour'] * 3600 + $parse_date['minute'] * 60 + $parse_date['second'];
                             $deployTimestamps[] = $deployment['timestamp'];
                         }
                     }

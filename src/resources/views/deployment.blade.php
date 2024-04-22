@@ -27,8 +27,14 @@
                 @if (array_key_exists('attempts', $deployment))
                     <div class="accordion" id="accordion">
                         @foreach ($deployment['attempts'] as $attempt)
-                            @php $statusColor = $attempt['status'] == 'Success' ? 'text-success' : ($attempt['status'] == 'In-Progress' ? 'text-info' : 'text-danger'); @endphp
-
+                            @php
+                                $status =
+                                    $deployment['attempts'][0]['status'] == 'Success'
+                                        ? '✅'
+                                        : ($deployment['attempts'][0]['status'] == 'In-Progress'
+                                            ? '🚀'
+                                            : '❌');
+                            @endphp
                             <div class="accordion-item bg-dark">
                                 <h2 class="accordion-header" id="attemptHeading-{{ $attempt['attempt'] }}">
                                     <button class="accordion-button bg-dark text-white" type="button"
@@ -37,15 +43,13 @@
                                         aria-expanded="false"
                                         aria-controls="attemptContent-{{ $attempt['attempt'] ?? '' }}">
                                         <span class="col">
-                                            Attempt:</b> {{ $attempt['attempt'] ?? '' }}</span>
+                                            {{ $status }}&nbsp;&nbsp;Attempt:</b>
+                                            {{ $attempt['attempt'] ?? '' }}</span>
                                         <span class="col">
                                             Timestamp: {{ $attempt['timestamp'] ?? '' }}
                                         </span>
                                         <span class="col">
                                             Runtime: {{ $attempt['runtime'] ?? '' }}
-                                        </span>
-                                        <span class="col {{ $statusColor }}">
-                                            {{ $attempt['status'] ?? '' }}
                                         </span>
                                     </button>
                                 </h2>

@@ -15,30 +15,27 @@
                             <div class="table-responsive">
                                 <table class="table-dark table-striped table">
                                     <thead>
-                                        <th>Project</th>
                                         <th>Locked</th>
+                                        <th>Project</th>
                                     </thead>
                                     <tbody>
                                         @foreach ($projects as $project)
-                                            @php $lock_exists = false; @endphp
+                                            @php $lockExists = false; @endphp
                                             <tr>
-                                                <td><a href="projects/{{ $project }}">{{ $project }}</a>
-                                                </td>
                                                 @foreach ($locks as $lock)
                                                     @if ($lock['project'] == $project)
                                                         @php
-                                                            $lock_color = $lock['locked'] == false ? 'text-success' : 'text-danger';
-                                                            $lock_exists = true;
+                                                            $lockIcon = $lock['locked'] == false ? '✅' : '🔒';
+                                                            $lockExists = true;
                                                         @endphp
-                                                        <td class="{{ $lock_color }}">
-                                                            {{ var_export($lock['locked']) }}
-                                                        </td>
+                                                        <td>{{ $lockIcon }}</td>
                                                         @php break; @endphp
                                                     @endif
                                                 @endforeach
-                                                @if ($lock_exists !== true)
-                                                    <td>Unknown</td>
+                                                @if ($lockExists !== true)
+                                                    <td>❓</td>
                                                 @endif
+                                                <td><a href="projects/{{ $project }}">{{ $project }}</a></td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -80,19 +77,25 @@
                             <div class="table-responsive">
                                 <table class="table-dark table-striped table">
                                     <thead>
+                                        <th>Status</th>
                                         <th>Project</th>
                                         <th>Deployment</th>
                                         <th>Attempts</th>
                                         <th>Timestamp</th>
-                                        <th>Status</th>
                                     </thead>
                                     <tbody>
                                         @foreach ($deployments as $deployment)
                                             @if (array_key_exists('attempts', $deployment))
                                                 @php
-                                                    $statusColor = $deployment['attempts'][0]['status'] == 'Success' ? 'text-success' : ($deployment['attempts'][0]['status'] == 'In-Progress' ? 'text-info' : 'text-danger');
+                                                    $status =
+                                                        $deployment['attempts'][0]['status'] == 'Success'
+                                                            ? '✅'
+                                                            : ($deployment['attempts'][0]['status'] == 'In-Progress'
+                                                                ? '🚀'
+                                                                : '❌');
                                                 @endphp
                                                 <tr>
+                                                    <td>{{ $status }}</td>
                                                     <td><a href="projects/{{ $deployment['project'] }}">{{ $deployment['project'] }}
                                                     </td>
                                                     <td>
@@ -101,9 +104,6 @@
                                                     </td>
                                                     <td>{{ count($deployment['attempts']) }}</td>
                                                     <td>{{ $deployment['timestamp'] }}</td>
-                                                    <td class="{{ $statusColor }}">
-                                                        {{ $deployment['attempts'][0]['status'] }}
-                                                    </td>
                                                 </tr>
                                             @endif
                                         @endforeach
