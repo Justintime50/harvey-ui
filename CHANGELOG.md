@@ -4,6 +4,7 @@
 
 - Upgrades MariaDB from `10.11` to `11.1.3`
 - Swaps colored text statuses to easily-understood emoji and ensures statuses come as the first element in tables for easier readability
+- Fixes a bug that returned `null` instead of an empty list when there were no deployments for a project leading to the inability to do counts on null
 
 ## v1.0.0 (2023-09-01)
 

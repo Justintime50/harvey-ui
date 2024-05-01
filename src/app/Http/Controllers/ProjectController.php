@@ -31,10 +31,10 @@ class ProjectController extends Controller
             $projectResponse = $this->harveyGetRequest(
                 "$this->harveyDomainProtocol://$this->harveyDomain/deployments?project=$project&page_size=$this->harveyPageSize" // phpcs:ignore
             );
-            $deployments = $projectResponse->successful() ? $projectResponse->json()['deployments'] : null;
+            $deployments = $projectResponse->successful() ? $projectResponse->json()['deployments'] : [];
             $deploymentsCount = $projectResponse->successful() ? $projectResponse->json()['total_count'] : 0;
         } catch (Throwable $error) {
-            $deployments = null;
+            $deployments = [];
             $deploymentsCount = 0;
         }
 
