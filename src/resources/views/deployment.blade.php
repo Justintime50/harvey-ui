@@ -26,12 +26,12 @@
 
                 @if (array_key_exists('attempts', $deployment))
                     <div class="accordion" id="accordion">
-                        @foreach ($deployment['attempts'] as $attempt)
+                        @foreach ($deployment['attempts'] as $index => $attempt)
                             @php
                                 $status =
-                                    $deployment['attempts'][0]['status'] == 'Success'
+                                    $deployment['attempts'][$index]['status'] == 'Success'
                                         ? '✅'
-                                        : ($deployment['attempts'][0]['status'] == 'In-Progress'
+                                        : ($deployment['attempts'][$index]['status'] == 'In-Progress'
                                             ? '🚀'
                                             : '❌');
                             @endphp

@@ -57,6 +57,7 @@
                                         @foreach ($deployments as $deployment)
                                             @if (array_key_exists('attempts', $deployment))
                                                 @php
+                                                    // Base status here off the 0 index which is the most recent
                                                     $status =
                                                         $deployment['attempts'][0]['status'] == 'Success'
                                                             ? '✅'
