@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Http;
@@ -11,7 +10,6 @@ use Illuminate\Support\Facades\Http;
 class Controller extends BaseController
 {
     use AuthorizesRequests;
-    use DispatchesJobs;
     use ValidatesRequests;
 
     protected $harveyDomainProtocol;
@@ -28,6 +26,15 @@ class Controller extends BaseController
         $this->timeout = config('harvey.timeout');
         $this->harveyPageSize = config('harvey.page_size');
     }
+
+    /**
+     * The path to the "home" route for your application.
+     *
+     * This is used by Laravel authentication to redirect users after login.
+     *
+     * @var string
+     */
+    public const HOME = '/';
 
     public function harveyGetRequest(string $url)
     {
