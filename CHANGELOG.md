@@ -1,10 +1,13 @@
 # CHANGELOG
 
-## Next Release
+## v2.0.0 (2024-06-10)
 
+- Upgrades Laravel from 10 to 11
+- Drops support for PHP 8.1
 - Upgrades MariaDB from `10.11` to `11.1.3`
 - Swaps colored text statuses to easily-understood emoji and ensures statuses come as the first element in tables for easier readability
 - Fixes a bug that returned `null` instead of an empty list when there were no deployments for a project leading to the inability to do counts on null
+- Bumps all dependencies
 
 ## v1.0.0 (2023-09-01)
 

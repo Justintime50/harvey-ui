@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -11,7 +12,7 @@ Auth::routes([
     'reset' => false,
 ]);
 
-Route::middleware('auth')->group(function () {
+Route::middleware(Authenticate::class)->group(function () {
     // General
     Route::get('/', [App\Http\Controllers\DashboardController::class, 'showDashboard']);
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'showDashboard']);
