@@ -24,6 +24,18 @@ class DeploymentController extends Controller
             $deployment = null;
         }
 
-        return view('deployment', compact('deployment'));
+        try {
+            // The $id is the project name appended with a dash and the ID of the deployment, get the project
+            // name by removing the ID
+            $project = (strrpos($id, '-') !== false) ? substr($id, 0, strrpos($id, '-')) : $id;
+            $lockResponse = $this->harveyGetRequest(
+                "$this->harveyDomainProtocol://$this->harveyDomain/locks/$project"
+            );
+            $isDeploying = $lockResponse->successful() ? $lockResponse->json()['system_lock'] : null;
+        } catch (Throwable $error) {
+            $isDeploying = null;
+        }
+
+        return view('deployment', compact('deployment', 'isDeploying'));
     }
 }

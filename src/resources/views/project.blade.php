@@ -5,14 +5,14 @@
     <div class="container-fluid">
         <h1>{{ $project }}</h1>
         @php
-            if (!empty($locked)) {
+            if (!empty($isLocked)) {
                 $lockedAlertMessage = 'true';
-            } elseif (empty($locked)) {
+            } elseif (empty($isLocked)) {
                 $lockedAlertMessage = 'false';
             } else {
                 $lockedAlertMessage = 'Unknown';
             }
-            $lockedAlertMessage = !empty($locked) ? 'Project is locked!' : 'Project is not locked.';
+            $lockedAlertMessage = !empty($isLocked) ? 'Project is locked!' : 'Project is not locked.';
             $lockedAlertClass =
                 $lockedAlertMessage == 'Project is locked!' ? 'alert alert-danger' : 'alert alert-success';
             $lockButtonEndpoint =
@@ -24,13 +24,13 @@
             <form action="{{ $lockButtonEndpoint }}" method="post">
                 @csrf
                 <input name="project" value="{{ $project }}" hidden>
-                <button class="btn btn-secondary">{{ $locked == false ? 'Lock' : 'Unlock' }} Deployments</button>
+                <button class="btn btn-secondary">{{ $isLocked == false ? 'Lock' : 'Unlock' }} Deployments</button>
             </form>
             <form action="/projects/{{ $project }}/redeploy" method="post"
                 onsubmit="return confirm('Confirm redeploy?');">
                 @csrf
                 <input name="project" value="{{ $project }}" hidden>
-                <button class="btn btn-danger">Redeploy</button>
+                <button class="btn btn-danger" @if ($isDeploying) disabled @endif>Redeploy</button>
             </form>
         </div>
 
@@ -41,6 +41,14 @@
                         Deployments
                     </div>
                     <div class="card-body">
+                        @if ($isDeploying)
+                            <div class="alert alert-warning" id="deploy-box">
+                                <span class="me-1">Project is Deploying!</span>
+                                <div class="spinner-grow" role="status">
+                                    <span class="visually-hidden">Deploying...</span>
+                                </div>
+                            </div>
+                        @endif
                         <div class="{{ $lockedAlertClass }}">{{ $lockedAlertMessage }}</div>
                         <h5>Total: {{ count($deployments) }}/{{ $deploymentsCount }}</h5>
                         @if ($deployments != [])
@@ -68,8 +76,8 @@
                                                 <tr>
                                                     <td>{{ $status }}</td>
                                                     <td>
-                                                        <a
-                                                            href="/deployments/{{ $deployment['project'] }}-{{ $deployment['commit'] }}">{{ $deployment['commit'] }}</a>
+                                                        <a href="/deployments/{{ $deployment['project'] }}-{{ $deployment['commit'] }}"
+                                                            class="badge bg-primary">{{ substr($deployment['commit'], 0, 10) }}</a>
                                                     </td>
                                                     <td>{{ count($deployment['attempts']) }}</td>
                                                     <td>{{ $deployment['timestamp'] }}</td>
@@ -142,6 +150,16 @@
         @endphp
 
         <script type="module">
+            // TODO: This is used as a poor AJAX, replace with real ajax calls
+            function reloadPage() {
+                if ({!! json_encode($isDeploying) !!}) {
+                    setTimeout(function() {
+                        location.reload();
+                    }, 5000);
+                }
+            }
+            window.onload = reloadPage;
+
             const ctx = document.getElementById('deploy-runtime-chart');
             const chartData = {!! json_encode($deployRuntimes) !!};
             const timestamps = {!! json_encode($deployTimestamps) !!};

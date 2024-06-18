@@ -22,9 +22,11 @@ class ProjectController extends Controller
             $lockResponse = $this->harveyGetRequest(
                 "$this->harveyDomainProtocol://$this->harveyDomain/locks/$project"
             );
-            $locked = $lockResponse->successful() ? $lockResponse->json()['locked'] : null;
+            $isLocked = $lockResponse->successful() ? $lockResponse->json()['locked'] : null;
+            $isDeploying = $lockResponse->successful() ? $lockResponse->json()['system_lock'] : null;
         } catch (Throwable $error) {
-            $locked = null;
+            $isLocked = null;
+            $isDeploying = null;
         }
 
         try {
@@ -47,7 +49,7 @@ class ProjectController extends Controller
             $webhook = null;
         }
 
-        return view('project', compact('project', 'locked', 'deployments', 'deploymentsCount', 'webhook'));
+        return view('project', compact('project', 'isLocked', 'isDeploying', 'deployments', 'deploymentsCount', 'webhook'));
     }
 
     /**

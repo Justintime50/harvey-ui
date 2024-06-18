@@ -14,9 +14,17 @@
                         onsubmit="return confirm('Confirm redeploy?');">
                         @csrf
                         <input name="project" value="{{ $deployment['project'] }}" hidden>
-                        <button class="btn btn-danger">Redeploy</button>
+                        <button class="btn btn-danger" @if ($isDeploying) disabled @endif>Redeploy</button>
                     </form>
                 </div>
+                @if ($isDeploying)
+                    <div class="alert alert-warning" id="deploy-box">
+                        <span class="me-1">Project is Deploying!</span>
+                        <div class="spinner-grow" role="status">
+                            <span class="visually-hidden">Deploying...</span>
+                        </div>
+                    </div>
+                @endif
                 <ul>
                     <li>Project: {{ $deployment['project'] }}</li>
                     <li>Commit: {{ $deployment['commit'] ?? '' }}</li>
@@ -67,4 +75,17 @@
                 @endif
             </div>
         </div>
-    @endsection
+    </div>
+
+    <script type="module">
+        // TODO: This is used as a poor AJAX, replace with real ajax calls
+        function reloadPage() {
+            if ({!! json_encode($isDeploying) !!}) {
+                setTimeout(function() {
+                    location.reload();
+                }, 5000);
+            }
+        }
+        window.onload = reloadPage;
+    </script>
+@endsection
