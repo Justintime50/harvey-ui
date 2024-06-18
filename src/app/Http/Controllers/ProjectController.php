@@ -49,7 +49,14 @@ class ProjectController extends Controller
             $webhook = null;
         }
 
-        return view('project', compact('project', 'isLocked', 'isDeploying', 'deployments', 'deploymentsCount', 'webhook'));
+        return view('project', compact(
+            'project',
+            'isLocked',
+            'isDeploying',
+            'deployments',
+            'deploymentsCount',
+            'webhook',
+        ));
     }
 
     /**
