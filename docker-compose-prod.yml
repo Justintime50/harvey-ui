@@ -16,7 +16,6 @@ services:
     labels:
       - 'traefik.http.routers.harvey-ui.rule=Host(`harvey.justinpaulhammond.com`) || Host(`www.harvey.justinpaulhammond.com`)'
       - 'traefik.http.routers.harvey-ui.tls=true'
-      - 'traefik.http.routers.harvey-ui.tls.certresolver=letsencrypt'
     depends_on:
       harvey-ui-db:
         condition: service_healthy
