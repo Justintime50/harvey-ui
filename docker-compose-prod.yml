@@ -13,9 +13,6 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
-    labels:
-      - 'traefik.http.routers.harvey-ui.rule=Host(`harvey.justinpaulhammond.com`) || Host(`www.harvey.justinpaulhammond.com`)'
-      - 'traefik.http.routers.harvey-ui.tls=true'
     depends_on:
       harvey-ui-db:
         condition: service_healthy

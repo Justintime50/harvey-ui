@@ -1,6 +1,7 @@
 services:
   harvey-ui:
     labels:
+      - 'traefik.enable=true'
       - 'traefik.http.routers.harvey-ui.rule=Host(`harvey.localhost`)'
     depends_on:
       harvey-ui-db:
