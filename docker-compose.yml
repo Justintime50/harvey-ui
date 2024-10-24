@@ -1,6 +1,7 @@
 services:
   harvey-ui:
     build: .
+    # image: justintime50/harvey-ui
     restart: always
     networks:
       - traefik
