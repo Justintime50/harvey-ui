@@ -1,9 +1,10 @@
 # CHANGELOG
 
-## Next Release
+## v2.1.0 (2025-01-07)
 
 - Adds a spinner on project and deployment screens showing when a deployment is in progress. The screen will refresh every 5 seconds to update the status
 - Upgrades mariadb from 11.3.2 to 11.4.3
+- Bumps dependencies
 
 ## v2.0.0 (2024-06-10)
 
